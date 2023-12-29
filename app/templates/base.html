@@ -2,7 +2,7 @@
 <!DOCTYPE html>
     <html lang="en">
     <meta charset="UTF-8">
-    <title>Bcca Team Viewer</title>
+    <title>Code Connect Hub</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='{% static 'styles.css' %}'>
     <link rel="shortcut icon" type="image/png" href="{% static 'icons/favicon.ico' %}">
@@ -14,11 +14,11 @@
         
         <div class='container'> 
             <ul>
-                <li class=''><a href="{% url 'home'%}">Home</a></li>
-                <li><a href="{% url 'community'%}">Community</a></li>
-                <li><a href="{% url 'documentation'%}">Documentation</a></li>
-                <li><a href="{% url 'management'%}">Management</a></li>
-                <li><a href="{% url 'procurement'%}">Procurement</a></li>
+                <li><a class='testClass' href="{% url 'home'%}">Home</a></li>
+                <li><a class='testClass' href="{% url 'community'%}">Community</a></li>
+                <li><a class='testClass' href="{% url 'documentation'%}">Documentation</a></li>
+                <li><a class='testClass' href="{% url 'management'%}">Management</a></li>
+                <li><a class='testClass' href="{% url 'procurement'%}">Procurement</a></li>
             </ul>
         </div>
         {% block content %}{% endblock content %}

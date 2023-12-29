@@ -1,0 +1,14 @@
+
+:root {
+    --dark_brown:#6b4f35;
+    --brown:#7a593a;
+    --dark_blue:#6caec4; 
+    --blue:#81d3ef;
+    --yellow:#ffe000;
+  }
+
+.testClass{
+    text-decoration: none;
+    color: var(--brown);
+    background-color: var(--blue);
+}
