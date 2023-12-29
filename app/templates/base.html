@@ -12,6 +12,15 @@
 
     <body class='background d-flex flex-column min-vh-100'>
         
+        <div> 
+            <ul>
+                <li><a href="{% url 'home'%}">Home</a></li>
+                <li><a href="{% url 'community'%}">Community</a></li>
+                <li><a href="{% url 'documentation'%}">Documentation</a></li>
+                <li><a href="{% url 'management'%}">Management</a></li>
+                <li><a href="{% url 'procurement'%}">Procurement</a></li>
+            </ul>
+        </div>
         {% block content %}{% endblock content %}
         
     </body>
