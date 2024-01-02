@@ -11,7 +11,8 @@
     <script src="{% static 'main.js' %}"></script>
 
     <body class='background d-flex flex-column min-vh-100'>
-        
+
+        {% comment %} header {% endcomment %}
         <div class='container'> 
             <ul>
                 <li><a class='testClass' href="{% url 'home'%}">Home</a></li>
@@ -21,7 +22,26 @@
                 <li><a class='testClass' href="{% url 'procurement'%}">Procurement</a></li>
             </ul>
         </div>
+
         {% block content %}{% endblock content %}
-        
+
+        {% comment %} Footer {% endcomment %}
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a class="testClass" href="{% url 'home'%}">Home</a>
+                        <a class="testClass" href="{% url 'community'%}">Community</a>
+                        <a class="testClass" href="{% url 'documentation'%}">Documentation</a>
+                        <a class="testClass" href="{% url 'management'%}">Management</a>
+                        <a class="testClass" href="{% url 'procurement'%}">Procurement</a>
+                        <img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                        <p>&copy;2024 Base Camp Coding Academy</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
     </body>
 </html>
