@@ -1,14 +1,30 @@
-
+/* color pallet */
 :root {
-    --dark_brown:#6b4f35;
-    --brown:#7a593a;
-    --dark_blue:#6caec4; 
-    --blue:#81d3ef;
-    --yellow:#ffe000;
-  }
-
-.testClass{
-    text-decoration: none;
-    color: var(--brown);
-    background-color: var(--blue);
+  --dark_brown:#6b4f35;
+  --brown:#7a593a;
+  --dark_blue:#6caec4; 
+  --blue:#81d3ef;
+  --yellow:#ffe000;
 }
+
+
+/* miscellaneous */
+.marginMiddle{ /* not utilized */
+  margin-left: auto;
+  margin-right: auto;
+}
+/* end miscellaneous */
+
+/* footer stuff */
+.footerElements{
+  text-decoration: none;
+  color: var(--brown);
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.footerElements:hover{
+  text-decoration: underline;
+}
+/* end footer */
+

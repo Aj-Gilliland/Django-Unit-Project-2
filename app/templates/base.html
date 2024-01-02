@@ -15,11 +15,11 @@
         {% comment %} header {% endcomment %}
         <div class='container'> 
             <ul>
-                <li><a class='testClass' href="{% url 'home'%}">Home</a></li>
-                <li><a class='testClass' href="{% url 'community'%}">Community</a></li>
-                <li><a class='testClass' href="{% url 'documentation'%}">Documentation</a></li>
-                <li><a class='testClass' href="{% url 'management'%}">Management</a></li>
-                <li><a class='testClass' href="{% url 'procurement'%}">Procurement</a></li>
+                <li><a class='footerElements' href="{% url 'home'%}">Home</a></li>
+                <li><a class='footerElements' href="{% url 'community'%}">Community</a></li>
+                <li><a class='footerElements' href="{% url 'documentation'%}">Documentation</a></li>
+                <li><a class='footerElements' href="{% url 'management'%}">Management</a></li>
+                <li><a class='footerElements' href="{% url 'procurement'%}">Procurement</a></li>
             </ul>
         </div>
 
@@ -30,18 +30,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <a class="testClass" href="{% url 'home'%}">Home</a>
-                        <a class="testClass" href="{% url 'community'%}">Community</a>
-                        <a class="testClass" href="{% url 'documentation'%}">Documentation</a>
-                        <a class="testClass" href="{% url 'management'%}">Management</a>
-                        <a class="testClass" href="{% url 'procurement'%}">Procurement</a>
-                        <img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;">
-                        <p>&copy;2024 Base Camp Coding Academy</p>
+                        <a class="footerElements" href="{% url 'home'%}">Home</a>
+                        <a class="footerElements" href="{% url 'community'%}">Community</a>
+                        <a class="footerElements" href="{% url 'documentation'%}">Documentation</a>
+                        <a class="footerElements" href="{% url 'management'%}">Management</a>
+                        <a class="footerElements" href="{% url 'procurement'%}">Procurement</a>
+                        <a href="{% url 'home'%}"><img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;"></a>
                     </div>
+                    <p class='small text-center'>&copy;All Rights Reserved 2024 Base Camp Coding Academy</p>
                 </div>
             </div>
         </footer>
-
 
     </body>
 </html>
