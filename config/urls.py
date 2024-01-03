@@ -4,7 +4,6 @@ from django.urls import path
 from app.views import *
 
 urlpatterns = [
-
     path('admin/', admin.site.urls, name="admin"),
 
     path('', homePage, name="home"),
@@ -12,5 +11,6 @@ urlpatterns = [
     path('documentation/', documentationPage, name="documentation"),
     path('management/', managementPage, name="management"),
     path('procurement/', procurementPage, name="procurement"),
-    
+    path('signup/', signupPage, name="signup"),
+    path('login/', loginPage, name="login"),
 ]
