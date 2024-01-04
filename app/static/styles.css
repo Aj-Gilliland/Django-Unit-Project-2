@@ -29,3 +29,7 @@
 }
 /* end footer */
 
+.baseCampBackground{
+  background-image: url(images/baseCamp_building_snipped.jpg);
+  overflow: hidden;
+}
