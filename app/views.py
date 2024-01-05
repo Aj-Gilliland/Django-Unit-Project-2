@@ -14,25 +14,25 @@ def homePage(request:HttpRequest)->HttpResponse:
     context = {}
     return render(request, "home.html", context)
 
-@login_required(login_url='login')
-def communityPage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "community.html", context)
+# @login_required(login_url='login')
+# def communityPage(request:HttpRequest)->HttpResponse:
+#     context = {}
+#     return render(request, "community.html", context)
 
-@login_required(login_url='login')
-def documentationPage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "documentation.html", context)
+# @login_required(login_url='login')
+# def documentationPage(request:HttpRequest)->HttpResponse:
+#     context = {}
+#     return render(request, "documentation.html", context)
 
-@login_required(login_url='login')
-def managementPage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "management.html", context)
+# @login_required(login_url='login')
+# def managementPage(request:HttpRequest)->HttpResponse:
+#     context = {}
+#     return render(request, "management.html", context)
 
-@login_required(login_url='login')
-def procurementPage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "procurement.html", context)
+# @login_required(login_url='login')
+# def procurementPage(request:HttpRequest)->HttpResponse:
+#     context = {}
+#     return render(request, "procurement.html", context)
 
 def signupPage(request:HttpRequest)->HttpResponse:
     context = {}
