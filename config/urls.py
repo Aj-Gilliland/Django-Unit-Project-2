@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('', homePage, name="home"),
     path('bugBoard/', bugBoardPage, name="bugBoard"),
+    path('profile/', profilePage, name="profile"),
     # path('community/', communityPage, name="community"),
     # path('documentation/', documentationPage, name="documentation"),
     # path('management/', managementPage, name="management"),
