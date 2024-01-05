@@ -54,3 +54,7 @@ def loginPage(request:HttpRequest)->HttpResponse:
                 return render (request, 'login.html', context)
     context = {}
     return render (request, 'login.html', context)
+
+def logoffPage(request:HttpRequest)->HttpResponse:
+    logout(request)
+    return redirect('login')

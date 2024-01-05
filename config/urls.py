@@ -13,4 +13,6 @@ urlpatterns = [
     path('procurement/', procurementPage, name="procurement"),
     path('signup/', signupPage, name="signup"),
     path('login/', loginPage, name="login"),
+    path('Logout/', logoffPage, name="logout"),
+
 ]
