@@ -39,5 +39,18 @@ def signupPage(request:HttpRequest)->HttpResponse:
     return render(request, "signup.html", context)
 
 def loginPage(request:HttpRequest)->HttpResponse:
+    if request.user.is_authenticated:
+            return redirect('home')
+    else:
+        if request.method == 'POST' :
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                context = {'Incorrect_username_or_password':'Incorrect username or password'}
+                return render (request, 'login_page.html', context)
     context = {}
-    return render(request, "login.html", context)
+    return render (request, 'login.html', context)
