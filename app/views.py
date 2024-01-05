@@ -14,6 +14,10 @@ def homePage(request:HttpRequest)->HttpResponse:
     context = {}
     return render(request, "home.html", context)
 
+def bugBoardPage(request:HttpRequest)->HttpResponse:
+    context = {}
+    return render(request, "bugBoard.html", context)
+
 # @login_required(login_url='login')
 # def communityPage(request:HttpRequest)->HttpResponse:
 #     context = {}

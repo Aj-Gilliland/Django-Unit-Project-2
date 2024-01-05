@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
 
     path('', homePage, name="home"),
+    path('bugBoard/', bugBoardPage, name="bugBoard"),
     # path('community/', communityPage, name="community"),
     # path('documentation/', documentationPage, name="documentation"),
     # path('management/', managementPage, name="management"),
