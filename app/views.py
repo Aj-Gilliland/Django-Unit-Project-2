@@ -51,6 +51,6 @@ def loginPage(request:HttpRequest)->HttpResponse:
                 return redirect('home')
             else:
                 context = {'Incorrect_username_or_password':'Incorrect username or password'}
-                return render (request, 'login_page.html', context)
+                return render (request, 'login.html', context)
     context = {}
     return render (request, 'login.html', context)
