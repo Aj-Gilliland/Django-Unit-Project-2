@@ -14,6 +14,36 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.baseCampBackground{
+  background-image: url(images/baseCamp_building_snipped.jpg);
+  overflow: hidden;
+}
+
+.border-brown {
+  border-color: #7a593a !important;
+}
+
+.chonk-font{
+  font-size: x-large;
+}
+
+.text-blue{
+  color:var(--blue) !important;
+}
+
+.text-brown{
+  color:var(--brown) !important;
+}
+
+.blue-shadow{
+  text-shadow: .06em .02em var(--dark_blue) !important;
+  background-color: var(--brown) !important;
+}
+
+.brown-shadow{
+  text-shadow: .06em .02em var(--dark_brown) !important;
+}
 /* end miscellaneous */
 
 /* footer stuff */
@@ -29,7 +59,5 @@
 }
 /* end footer */
 
-.baseCampBackground{
-  background-image: url(images/baseCamp_building_snipped.jpg);
-  overflow: hidden;
-}
+
+

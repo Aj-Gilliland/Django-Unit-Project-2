@@ -14,12 +14,14 @@ def homePage(request:HttpRequest)->HttpResponse:
     context = {}
     return render(request, "home.html", context)
 
+@login_required(login_url='login')
 def bugBoardPage(request:HttpRequest)->HttpResponse:
     context = {}
     return render(request, "bugBoard.html", context)
 
+@login_required(login_url='login')
 def profilePage(request:HttpRequest)->HttpResponse:
-    context = {}
+    context = {'notifications':['These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days'],'userBugReports':['These are test reports','these would be reports that you put out','erm ur bug hasnt been solved in two days'],'awardeList':['upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Jordan 2/13/24',"Your comment received credit for fixing Adrian's bug"]}
     return render(request, "profile.html", context)
 
 # @login_required(login_url='login')

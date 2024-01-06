@@ -2,6 +2,50 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <div class='text-center'>
+        <h1 class='text-blue brown-shadow'> Welcome back, {{request.user}}.</h1>
+    </div>
+    <br>
+    <div class='row d-flex justify-content-between'>
+        <div class="col-md-4 container">
+            <div class="card border-brown">
+                <div class="card-header text-blue blue-shadow">
+                    Notifications
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for notification in notifications %}
+                        <li class="list-group-item border-0">{{ notification }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 container">
+            <div class="card border-brown">
+                <div class="card-header text-blue blue-shadow">
+                    Code coins earned this week
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for awarde in awardeList %}
+                        <li class="list-group-item border-0">{{ awarde }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-8 container">
+        <div class="card border-brown">
+            <div class="card-header text-blue blue-shadow chonk-font">
+                Your Bug Reports
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for bugReport in userBugReports %}
+                    <li class="list-group-item border-0">{{ bugReport }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-
+    
+    
 {% endblock content %}
