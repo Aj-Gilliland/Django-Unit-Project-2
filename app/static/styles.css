@@ -46,6 +46,15 @@
 }
 /* end miscellaneous */
 
+/* all */
+body,html{
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  margin: 0px;
+}
+
+/* end all */
+
 /* footer stuff */
 .footerElements{
   text-decoration: none;

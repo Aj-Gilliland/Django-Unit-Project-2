@@ -45,8 +45,21 @@ def profilePage(request:HttpRequest)->HttpResponse:
 #     return render(request, "procurement.html", context)
 
 def signupPage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "signup.html", context)
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else:
+        form = SignUpForm()
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('login')
+            else:
+                errors = form.errors.values()
+                context = {'form': form, 'errors': errors}
+                return render(request, "signup.html", context)
+        context = {'form':form,'errors':[]}
+        return render(request, "signup.html",context)
 
 def loginPage(request:HttpRequest)->HttpResponse:
     if request.user.is_authenticated:

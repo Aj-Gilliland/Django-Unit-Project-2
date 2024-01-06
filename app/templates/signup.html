@@ -13,35 +13,33 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
         <div class='d-flex justify-content-center'> 
             <div class='bg-light d-smoke rounded w-sm-75 w-lg-25 p-4'>
                 <div class='container middleOfScreen mt-5'>
                     <h1 id="form-title" class='text-center'>Create Account</h1>
-                    <form method='POST' action=''>
+                    <form method="POST" action="">
                         {% csrf_token %}
+                        
                         {% for error in errors %}
                             <div class="alert alert-danger d-flex middleOfScreen center w-50" role="alert">{{ error|striptags }}</div>
                         {% endfor %}
-                        <br>
+                    
                         {% for field in form %}
-                            <div class="mb-3">
-                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                                {{field}}
+                            <div class="mb-3 input-group">
+                                <input type="{{ field.widget.input_type }}" name="{{ field.name }}" placeholder="{{ field.label }}" class="form-control">
                             </div>
                         {% endfor %}
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <input class="btn login_btn" type="submit" value="Signup">
                         </div>
-                    </form>
+                    </form>                    
                 </div>
-            <br>
             <p class='subtextFont text-center'> Already have an account? <a href='{% url 'login'%}' class='subtextFont'>Login here</a></p>
-            <br>
             </div>  
         </div>            
-
+        <br>
+        <br>
+        <br>
 
         <footer class="footer mt-auto py-3 bg-light">
             <div class="container">
