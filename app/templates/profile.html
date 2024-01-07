@@ -1,40 +1,45 @@
 
+
 {% extends "base.html" %}
 {% block content %}
 
     <div class='text-center'>
         <h1 class='text-blue brown-shadow'> Welcome back, {{request.user}}.</h1>
     </div>
+
     <br>
-    <div class='row d-flex justify-content-between'>
-        <div class="col-md-4 container">
-            <div class="card background-blue">
-                <div class="card-header text-brown blue-shadow">
-                    Notifications
+
+    <div class='d-flex justify-content-center'>
+        <div class='center row w-75'>
+            <div class="container min-width-50 left_element" style="justify-content-between;">
+                <div class="card background-blue">
+                    <div class="card-header text-brown blue-shadow">
+                        Notifications
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for notification in notifications %}
+                            <li class="list-group-item border-0">{{ notification }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    {% for notification in notifications %}
-                        <li class="list-group-item border-0">{{ notification }}</li>
-                    {% endfor %}
-                </ul>
             </div>
-        </div>
-        <div class="col-md-4 container">
-            <div class="card background-blue">
-                <div class="card-header text-brown blue-shadow">
-                    Code coins earned this week
+            <div class="container min-width-50 right_element" style="justify-content-between;">
+                <div class="card background-blue">
+                    <div class="card-header text-brown blue-shadow">
+                        Code coins earned this week
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for awarde in awardeList %}
+                            <li class="list-group-item border-0">{{ awarde }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    {% for awarde in awardeList %}
-                        <li class="list-group-item border-0">{{ awarde }}</li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
     </div>
+
     <br>
-    <br>
-    <br>
+
     <div class="center text-center">
         <h3 class='text-blue brown-shadow'>Yearly bugs fixed by you</h3>
         <div class="w-75 h-75 mx-auto">
@@ -69,10 +74,10 @@
         });
     </script>
     {% comment %} just waiting to be hooked up in the views (put each users fixes in a list under 'totalTokenList') {% endcomment %}
+   
     <br>
-    <br>
-    <br>
-    <div class="col-md-12 container">
+
+    <div class="col-md-12 container w-75">
         <div class="card background-blue">
             <div class="card-header text-brown blue-shadow chonk-font">
                 Your Bug Reports
@@ -84,6 +89,7 @@
             </ul>
         </div>
     </div>
+
     <br>
     
     
