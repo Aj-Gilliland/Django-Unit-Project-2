@@ -21,7 +21,11 @@
 }
 
 .border-brown {
-  border-color: #7a593a !important;
+  border-color: var(--brown) !important;
+}
+
+.border-blue{
+  border-color: var(--blue) !important;
 }
 
 .chonk-font{
@@ -38,11 +42,18 @@
 
 .blue-shadow{
   text-shadow: .06em .02em var(--dark_blue) !important;
-  background-color: var(--brown) !important;
 }
 
 .brown-shadow{
   text-shadow: .06em .02em var(--dark_brown) !important;
+}
+
+.background-brown{
+  background-color: var(--brown) !important;
+}
+
+.background-blue{
+  background-color: var(--blue) !important;
 }
 /* end miscellaneous */
 

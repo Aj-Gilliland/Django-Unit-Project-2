@@ -8,8 +8,8 @@
     <br>
     <div class='row d-flex justify-content-between'>
         <div class="col-md-4 container">
-            <div class="card border-brown">
-                <div class="card-header text-blue blue-shadow">
+            <div class="card background-blue">
+                <div class="card-header text-brown blue-shadow">
                     Notifications
                 </div>
                 <ul class="list-group list-group-flush">
@@ -20,8 +20,8 @@
             </div>
         </div>
         <div class="col-md-4 container">
-            <div class="card border-brown">
-                <div class="card-header text-blue blue-shadow">
+            <div class="card background-blue">
+                <div class="card-header text-brown blue-shadow">
                     Code coins earned this week
                 </div>
                 <ul class="list-group list-group-flush">
@@ -35,13 +35,46 @@
     <br>
     <br>
     <br>
-    {% comment %} graph goes here {% endcomment %}
+    <div class="center text-center">
+        <h3 class='text-blue brown-shadow'>Yearly bugs fixed by you</h3>
+        <div class="w-75 h-75 mx-auto">
+            <canvas id="bugFixChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+    {% comment %} DO NOT PUT THIS IN THE JS FILE, THE TEMPLATE TAG WILL STOP WORKING {% endcomment %}
+    <script>
+        var ctx = document.getElementById('bugFixChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly Data',
+                    data: [{% for tokenMonth in totalTokenList %}{{ tokenMonth }},{% endfor %}],
+                    backgroundColor: '#6caec4', //dot color?
+                    borderColor: '#81d3ef', //line color
+                    borderWidth: 5, //line width
+                    pointRadius: 0, //removes dots
+                    fill: false}]},
+            options: {
+                scales: {
+                    x: [{
+                        type: 'linear',
+                        position: 'bottom'}],
+                    y: [{
+                        ticks: {
+                            stepSize: 10,
+                            max: 50,
+                            min: 0} }]} }
+        });
+    </script>
+    {% comment %} just waiting to be hooked up in the views (put each users fixes in a list under 'totalTokenList') {% endcomment %}
     <br>
     <br>
     <br>
-    <div class="col-md-8 container">
-        <div class="card border-brown">
-            <div class="card-header text-blue blue-shadow chonk-font">
+    <div class="col-md-12 container">
+        <div class="card background-blue">
+            <div class="card-header text-brown blue-shadow chonk-font">
                 Your Bug Reports
             </div>
             <ul class="list-group list-group-flush">
@@ -51,7 +84,7 @@
             </ul>
         </div>
     </div>
-
+    <br>
     
     
 {% endblock content %}
