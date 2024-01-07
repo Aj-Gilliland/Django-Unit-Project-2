@@ -16,7 +16,7 @@
                     <div class="card-header text-brown blue-shadow">
                         Notifications
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush overflow">
                         {% for notification in notifications %}
                             <li class="list-group-item border-0">{{ notification }}</li>
                         {% endfor %}
@@ -28,7 +28,7 @@
                     <div class="card-header text-brown blue-shadow">
                         Code coins earned this week
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush overflow">
                         {% for awarde in awardeList %}
                             <li class="list-group-item border-0">{{ awarde }}</li>
                         {% endfor %}
@@ -82,7 +82,7 @@
             <div class="card-header text-brown blue-shadow chonk-font">
                 Your Bug Reports
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush overflow">
                 {% for bugReport in userBugReports %}
                     <li class="list-group-item border-0">{{ bugReport }}</li>
                 {% endfor %}

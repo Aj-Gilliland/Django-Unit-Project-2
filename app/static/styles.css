@@ -91,6 +91,21 @@ body,html{
   margin-right: -8px !important;
 }
 
+.overflow {
+  max-height: 200px; /* Adjust the max height as needed */
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.overflow::-webkit-scrollbar {
+  width: 0.05em; /* For Chrome and Safari */
+}
+
+.overflow::-webkit-scrollbar-thumb {
+  background-color: transparent; /* For Chrome and Safari */
+}
+
 @media only screen and (max-width: 600px) {
 .left_element,.right_element{
   margin-left: 0px !important;
@@ -98,3 +113,4 @@ body,html{
   margin-top: 10px !important;
 }
 }
+
