@@ -20,6 +20,10 @@
   overflow: hidden;
 }
 
+.background{
+  background-image: url(images/lighter_brown_background.jpg);
+}
+
 .border-brown {
   border-color: var(--brown) !important;
 }
@@ -48,6 +52,10 @@
   text-shadow: .06em .02em var(--dark_brown) !important;
 }
 
+.blue-box-shadow{
+  box-shadow: 5px 5px 2px 1px rgba(129, 211, 239);
+}
+
 .background-brown{
   background-color: var(--brown) !important;
 }
@@ -62,6 +70,15 @@ body,html{
   overflow-y: scroll !important;
   overflow-x: hidden !important;
   margin: 0px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('your-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* end all */

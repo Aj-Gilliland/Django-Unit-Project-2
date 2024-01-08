@@ -9,6 +9,15 @@
 
     <br>
 
+    <div class='d-flex justify-content-center align-content-center'>
+        <img src="{{ details.profile_pic.url }}" alt="Profile Picture" class='img-fluid rounded-circle w-25 h-25'>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
     <div class='d-flex justify-content-center'>
         <div class='center row w-75'>
             <div class="container min-width-50 left_element" style="justify-content-between;">
@@ -41,12 +50,12 @@
     <br>
 
     <div class="center text-center">
-        <h3 class='text-blue brown-shadow'>Yearly bugs fixed by you</h3>
-        <div class="w-75 h-75 mx-auto">
-            <canvas id="bugFixChart" width="800" height="400"></canvas>
+        <h3 class='text-blue brown-shadow'>Monthly Bugs Fixed by You</h3>
+        <div class="w-50 h-50 mx-auto">
+            <canvas id="bugFixChart" width="400" height="200"></canvas>
         </div>
     </div>
-    {% comment %} DO NOT PUT THIS IN THE JS FILE, THE TEMPLATE TAG WILL STOP WORKING {% endcomment %}
+    
     <script>
         var ctx = document.getElementById('bugFixChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -56,25 +65,38 @@
                 datasets: [{
                     label: 'Monthly Data',
                     data: [{% for tokenMonth in totalTokenList %}{{ tokenMonth }},{% endfor %}],
-                    backgroundColor: '#6caec4', //dot color?
-                    borderColor: '#81d3ef', //line color
-                    borderWidth: 5, //line width
-                    pointRadius: 0, //removes dots
-                    fill: false}]},
+                    backgroundColor: 'rgba(108, 174, 196, 0.2)', // Area under the line color
+                    borderColor: '#81d3ef', // Line color
+                    borderWidth: 5, // Line thickness
+                    pointRadius: 0, // Removes dots
+                    fill: true // Fill the area under the line
+                }]
+            },
             options: {
                 scales: {
                     x: [{
                         type: 'linear',
-                        position: 'bottom'}],
+                        position: 'bottom',
+                        grid: {
+                            lineWidth: 100 // Adjust gridline thickness on x-axis
+                        }
+                    }],
                     y: [{
                         ticks: {
                             stepSize: 10,
                             max: 50,
-                            min: 0} }]} }
+                            min: 0
+                        },
+                        grid: {
+                            lineWidth: 100 // Adjust gridline thickness on y-axis
+                        }
+                    }]
+                }
+            }
         });
     </script>
-    {% comment %} just waiting to be hooked up in the views (put each users fixes in a list under 'totalTokenList') {% endcomment %}
-   
+          
+    
     <br>
 
     <div class="col-md-12 container w-75">
