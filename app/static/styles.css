@@ -63,6 +63,10 @@
 .background-blue{
   background-color: var(--blue) !important;
 }
+
+.background-dark-blue{
+  background-color: var(--dark_blue) !important;
+}
 /* end miscellaneous */
 
 /* all */
