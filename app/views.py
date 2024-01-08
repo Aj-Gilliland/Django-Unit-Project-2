@@ -11,8 +11,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
 def homePage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "home.html", context)
+    if request.user.is_authenticated:
+        return redirect('bugBoard')
+    else:
+        context = {}
+        return render(request, "home.html", context)
 
 @login_required(login_url='login')
 def bugBoardPage(request:HttpRequest)->HttpResponse:
@@ -70,7 +73,9 @@ def settingPage(request:HttpRequest)->HttpResponse:
             user = form.save()
             update_session_auth_hash(request, user)
             return redirect('setting')
-    else:
-        form = PasswordChangeForm(request.user)
-        context = {'form':form}
-        return render (request, 'setting.html', context)
+        else:
+            form = PasswordChangeForm(request.user)
+            context = {'form':form}
+            return render (request, 'setting.html', context)
+    context = {}
+    return render (request, 'setting.html', context)

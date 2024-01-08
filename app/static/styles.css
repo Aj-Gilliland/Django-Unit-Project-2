@@ -10,6 +10,10 @@
 
 
 /* miscellaneous */
+.width100{
+  width: 100%;
+}
+
 .marginMiddle{ /* not utilized */
   margin-left: auto;
   margin-right: auto;
