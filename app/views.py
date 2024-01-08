@@ -3,8 +3,8 @@ from .forms import *
 from django.shortcuts import render, redirect
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import password_validation
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,26 +23,6 @@ def bugBoardPage(request:HttpRequest)->HttpResponse:
 def profilePage(request:HttpRequest)->HttpResponse:
     context = {'totalTokenList':[12,33,3,25,31,59,2],'notifications':['These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days'],'userBugReports':['These are test reports','these would be reports that you put out','erm ur bug hasnt been solved in two days','These are test reports','these would be reports that you put out','erm ur bug hasnt been solved in two days'],'awardeList':['upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug",'upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug"]}
     return render(request, "profile.html", context)
-
-# @login_required(login_url='login')
-# def communityPage(request:HttpRequest)->HttpResponse:
-#     context = {}
-#     return render(request, "community.html", context)
-
-# @login_required(login_url='login')
-# def documentationPage(request:HttpRequest)->HttpResponse:
-#     context = {}
-#     return render(request, "documentation.html", context)
-
-# @login_required(login_url='login')
-# def managementPage(request:HttpRequest)->HttpResponse:
-#     context = {}
-#     return render(request, "management.html", context)
-
-# @login_required(login_url='login')
-# def procurementPage(request:HttpRequest)->HttpResponse:
-#     context = {}
-#     return render(request, "procurement.html", context)
 
 def signupPage(request:HttpRequest)->HttpResponse:
     if request.user.is_authenticated:
@@ -81,3 +61,16 @@ def loginPage(request:HttpRequest)->HttpResponse:
 def logoffPage(request:HttpRequest)->HttpResponse:
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def settingPage(request:HttpRequest)->HttpResponse:
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('setting')
+    else:
+        form = PasswordChangeForm(request.user)
+        context = {'form':form}
+        return render (request, 'setting.html', context)

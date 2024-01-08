@@ -11,10 +11,12 @@
 
     <br>
 
+    {% if details.profile_pic.url %}
     <div class='d-flex justify-content-center align-content-center'>
         <img src="{{ details.profile_pic.url }}" alt="Profile Picture" class='img-fluid rounded-circle w-25 h-25'>
     </div>
-
+    {% endif %}
+    
     <br>
     <br>
     <br>

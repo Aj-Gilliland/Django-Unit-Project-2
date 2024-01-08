@@ -9,11 +9,8 @@ urlpatterns = [
     path('', homePage, name="home"),
     path('bugBoard/', bugBoardPage, name="bugBoard"),
     path('profile/', profilePage, name="profile"),
-    # path('community/', communityPage, name="community"),
-    # path('documentation/', documentationPage, name="documentation"),
-    # path('management/', managementPage, name="management"),
-    # path('procurement/', procurementPage, name="procurement"),
     path('signup/', signupPage, name="signup"),
     path('login/', loginPage, name="login"),
     path('Logout/', logoffPage, name="logout"),
+    path('settings/', settingPage, name='setting'),
 ]
