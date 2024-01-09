@@ -1,5 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
+
+<div class='container text-center'>
+    <a a class="" href="{% url 'home' %}">
+        {% if details.profile_pic.url %}
+            <div class='rounded-circle-container2'>
+                <img src="{{ details.profile_pic.url }}" alt="Profile Picture">
+            </div>
+        {% else %}
+            <div class='rounded-circle-container2'>
+                <img src="{% static 'images/default_no_profile_pic.jpg' %}" alt="Default Profile">
+            </div>
+        {% endif %}
+        <p> Edit Profile Picture </p>
+    </a>
+</div>
 
 <br>
 
@@ -36,4 +52,7 @@
     </div>
 </div>
 
+<br>
+
 {% endblock content %}
+
