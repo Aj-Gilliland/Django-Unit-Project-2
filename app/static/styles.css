@@ -118,7 +118,17 @@ body {
   max-width: 300px !important;
 }
 
+.maxWidthBoxBig{
+  max-width: 500px !important;
+}
 
+.maxHeightBox{
+  max-height: 300px !important;
+}
+
+.maxHeightBoxBig{
+  max-height: 600px !important;
+}
 
 /* profile */
 
