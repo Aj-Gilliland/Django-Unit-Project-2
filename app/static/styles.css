@@ -10,6 +10,10 @@
 
 
 /* miscellaneous */
+.paddingStripper{
+  padding: 0% !important;
+}
+
 .linkStripper{
   text-decoration: none !important;
   color: black;
@@ -19,14 +23,29 @@
   width: 100%;
 }
 
-.marginMiddle{ /* not utilized */
-  margin-left: auto;
-  margin-right: auto;
+.marginMiddle{ 
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .baseCampBackground{
   background-image: url(images/baseCamp_building_snipped.jpg);
   overflow: hidden;
+}
+
+.boarderBig{
+  border: solid;
+  border-width: 10px !important;
+}
+
+.boarderMed{
+  border: solid;
+  border-width: 7px !important;
+}
+
+.boarderSmall{
+  border: solid;
+  border-width: 5px !important;
 }
 
 .background{
@@ -71,7 +90,7 @@
 }
 
 .blue-box-shadow{
-  box-shadow: 5px 5px 2px 1px rgba(129, 211, 239);
+  box-shadow: 5px 5px 2px 1px var(--dark_blue);
 }
 
 .background-brown{
@@ -119,6 +138,11 @@ body {
 /* end footer */
 
 /* settings */
+
+.photoMaxWidth{
+  max-width: 200px !important;
+}
+
 .maxWidthBox{
   max-width: 300px !important;
 }

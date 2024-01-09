@@ -2,6 +2,35 @@
 {% extends "base.html" %}
 {% block content %}
 
+<br>
+
+{% for i in bugReports %}
+    <div class="card border-blue boarderMed blue-box-shadow">
+        <div class="card-title">
+            <h1 class="card-title text-center">{{ i.title }}</h1>
+        </div>
+        <div class='card-body'>
+            <p class="card-text">{{ i.content }}</p>
+            
+            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">
+                View responses 
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse" id="collapseMessages{{ forloop.counter }}">
+                <div class="mt-3">
+                    {% for msg in i.messages %}
+                        <p>{{ msg }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+{% endfor %}
+
+
 
 
 {% endblock content %}

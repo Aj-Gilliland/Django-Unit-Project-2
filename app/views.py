@@ -21,7 +21,20 @@ def homePage(request:HttpRequest)->HttpResponse:
 
 @login_required(login_url='login')
 def bugBoardPage(request:HttpRequest)->HttpResponse:
-    context = {}
+    fakeObject = {
+    'title': "Uhhh python broke",
+    'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help.',
+    'messages': ['msg1','msg2','msg3'],
+    'winner': 'Adrian'
+    }
+    fakeObject2 = {
+    'title': "Uhhh python broke again",
+    'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help...again.',
+    'messages': ['msg1','msg2','msg3','msg4'],
+    'winner': ''
+    }
+
+    context = {'bugReports':[fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2]}
     return render(request, "bugBoard.html", context)
 
 @login_required(login_url='login')
