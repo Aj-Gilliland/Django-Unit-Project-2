@@ -9,6 +9,8 @@ from django.contrib.auth import password_validation
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
+
 
 def homePage(request:HttpRequest)->HttpResponse:
     if request.user.is_authenticated:
@@ -45,19 +47,19 @@ def signupPage(request:HttpRequest)->HttpResponse:
         return render(request, "signup.html",context)
 
 def loginPage(request:HttpRequest)->HttpResponse:
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
+    #         return redirect('home')
+    # else:
+    if request.method == 'POST' :
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
             return redirect('home')
-    else:
-        if request.method == 'POST' :
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                context = {'Incorrect_username_or_password':'Incorrect username or password'}
-                return render (request, 'login.html', context)
+        else:
+            context = {'Incorrect_username_or_password':'Incorrect username or password'}
+            return render (request, 'login.html', context)
     context = {}
     return render (request, 'login.html', context)
 
@@ -66,7 +68,7 @@ def logoffPage(request:HttpRequest)->HttpResponse:
     return redirect('login')
 
 @login_required(login_url='login')
-def settingPage(request:HttpRequest)->HttpResponse:
+def settingPage(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -74,8 +76,12 @@ def settingPage(request:HttpRequest)->HttpResponse:
             update_session_auth_hash(request, user)
             return redirect('setting')
         else:
-            form = PasswordChangeForm(request.user)
-            context = {'form':form}
-            return render (request, 'setting.html', context)
-    context = {}
-    return render (request, 'setting.html', context)
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
+            print(f'The form was not completed correctly: {form.errors}')  
+    else:
+        form = PasswordChangeForm(request.user)
+
+    context = {'form': form}
+    return render(request, 'setting.html', context)

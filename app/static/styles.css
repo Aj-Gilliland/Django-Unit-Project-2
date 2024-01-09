@@ -36,6 +36,15 @@
   border-color: var(--blue) !important;
 }
 
+.error{
+  color:red !important;
+  font-size: .9em;
+}
+
+.errorShadow{
+  text-shadow: 1px 1px 1px red, 0 0 1em red, 0 0 0.1em red !important;
+}
+
 .chonk-font{
   font-size: x-large;
 }
@@ -103,6 +112,13 @@ body {
   text-decoration: underline;
 }
 /* end footer */
+
+/* settings */
+.maxWidthBox{
+  max-width: 300px !important;
+}
+
+
 
 /* profile */
 
