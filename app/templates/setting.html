@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class='container text-center'>
-    <a a class="" href="{% url 'home' %}">
+    <a a class="linkStripper" href="{% url 'home' %}">
         {% if details.profile_pic.url %}
             <div class='rounded-circle-container2'>
                 <img src="{{ details.profile_pic.url }}" alt="Profile Picture">

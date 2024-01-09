@@ -10,6 +10,11 @@
 
 
 /* miscellaneous */
+.linkStripper{
+  text-decoration: none !important;
+  color: black;
+}
+
 .width100{
   width: 100%;
 }
@@ -165,8 +170,8 @@ body {
 .rounded-circle-container2 img:hover{
   border: solid;
   border-color: black;
-  border-width: 50px;  
-  transition: border-width 1s ease-in-out;}
+  border-width: 10px;  
+  transition: border-width .1s ease-in-out;}
 
 .left_element{
   max-width: 400px !important;
