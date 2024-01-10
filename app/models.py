@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class Account(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
@@ -7,8 +8,8 @@ class Account(models.Model):
 
 class Message(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    content = models.CharField(max_length=255)
-
+    content = models.CharField(max_length=255, unique=True)
+ 
 class BugReport(models.Model):
     account = models.OneToOneField(Account, on_delete=models.CASCADE)
     prompt = models.CharField(max_length=255, null=True)
@@ -25,8 +26,21 @@ class Upvote(models.Model):
     date_created = models.DateField(auto_now=True)
 
 #### methods ####
+
+####MISC####
     
-#account 
+#for graph
+def getBugsSolvedPerMonth(account):
+    bugs_per_month = [0] * 12
+    currentYear = datetime.now().year
+    bug_reports = BugReport.objects.filter(account=account)
+    for bug_report in bug_reports:
+        if bug_report.date_created.year == currentYear:
+            month_index = bug_report.date_created.month
+            bugs_per_month[month_index] += 1
+    return bugs_per_month
+   
+####account#### 
       
 #returns true if there is an account associated else returns false 
 def hasAccount(user):
@@ -45,8 +59,29 @@ def getAccountFor(user):
     account = Account.objects.get(user=user)
     return account     
 
-#notifications
+####notifications####
+
 def getNotificationsFor(account):
     notifications = Notification.objects.filter(account=account)
     return notifications
 
+####messages####
+
+def makeMessage(content,account):
+    message = Message(content=content,account=account)
+    message.save()
+    return message
+
+
+####upvote####
+
+def messageHasUpVote(message):
+    try:
+        upVote = Upvote.objects.get(message = message)
+        return upVote
+    except:
+        print('Message has no upvote')
+        return False
+
+def addMessageToUpVote(account,message):
+    ...

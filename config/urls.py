@@ -14,7 +14,7 @@ urlpatterns = [
     path('login/', loginPage, name="login"),
     path('Logout/', logoffPage, name="logout"),
     path('settings/', settingPage, name='setting'),
-    path('dashboard/', adminPage, name='dashboard'), #admin only
+    path('dashboard/', adminPage, name='dashboard'), 
 ]
 
 if settings.DEBUG:

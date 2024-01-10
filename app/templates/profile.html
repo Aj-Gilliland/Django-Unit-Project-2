@@ -13,7 +13,7 @@
     <br>
 
     <div class='container text-center'>
-        {% if profile_pic != None %}
+        {% if profile_pic %}
             <div class='rounded-circle-container'>
                 <img src="{{ profile_pic.url|safe }}" alt="Profile Picture">
             </div>
@@ -21,6 +21,7 @@
             <div class='rounded-circle-container'>
                 <img src="{% static 'images/default_no_profile_pic.jpg' %}" alt="Default Profile">
             </div>
+            <p class='center'>Add a profile picture in the settings</p>
         {% endif %}
     </div>
 
