@@ -16,8 +16,6 @@ class BugReport(models.Model):
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.content
-    messages = models.ForeignKey(Message, null=True, on_delete=models.SET_NULL, related_name='bug_report_messages')
-    most_correct = models.OneToOneField(Message, null=True, on_delete=models.SET_NULL, related_name='most_correct_bug_report')
 
 class Notification(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
