@@ -19,14 +19,15 @@
                 <div class="card border-blue boarderMed blue-box-shadow">
                     <div class="card-title">
                         <h1 class="card-title text-center">{{ i.title }}</h1>
+                        <p class="text-center">by: {{ i.account.user.username }}</p>
                     </div>
                     <div class='card-body'>
                         <p class="card-text">{{ i.content }}</p>
-                        
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">
-                            View responses 
-                        </button>
-
+                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
+            
+                        <!-- Comment button triggering the form -->
+                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
+            
                         {% comment %} Collapsible content {% endcomment %}
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
                             <div class="">
@@ -40,9 +41,25 @@
                         </div>
                     </div>
                 </div>
-
+            
+                <!-- Comment workflow -->
+                <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-transparent border-0">
+                            <form class='bg-transparent' method="post" action="">
+                                {% csrf_token %}
+                                <div class="mb-3 bg-transparent">
+                                    <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            
                 <br>
             {% endfor %}
+            
 
             {% comment %} continue side bar {% endcomment %}
             </main>
