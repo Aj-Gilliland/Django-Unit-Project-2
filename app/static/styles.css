@@ -231,8 +231,28 @@ body {
 }
 
 /* bugBoard */
+.upVoteDiv{
+  display: flex;
+  flex-direction: row;
+}
 
 .upVoteIcon{
   width: 15px;
   height: 15px;
+}
+
+.upVoteIcon.bi-arrow-up {
+  display: none;
+}
+
+.upVoteIcon.bi-arrow-up-circle-fill {
+  display: block;
+}
+
+.upVoteIcon.active.bi-arrow-up {
+  display: block;
+}
+
+.upVoteIcon.active.bi-arrow-up-circle-fill {
+  display: none;
 }

@@ -21,10 +21,10 @@
             <div class="collapse" id="collapseMessages{{ forloop.counter }}">
                 <div class="">
                     {% for msg in i.messages %}
-                        <div class='d-flex row'>
+                        <div class='upVoteDiv'>
                             <p>{{ msg }}</p>
-                            <button class='btn btn-sm bg-transparent border-0'><img class='upVoteIcon' src="{% static 'icons/lighter-upvote.png' %}" alt="upvote"></button>
-                        </div>                                       
+                            <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
+                        </div>                                   
                     {% endfor %}
                 </div>
             </div>
