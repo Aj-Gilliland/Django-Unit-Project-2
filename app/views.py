@@ -30,7 +30,7 @@ def bugBoardPage(request:HttpRequest)->HttpResponse:
     fakeObject2 = {
     'title': "Uhhh python broke again",
     'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help...again.',
-    'messages': ['msg1','msg2','msg3','msg4'],
+    'messages': ['this is a message that is slightly long','i assure you that this will be a long message, in fact so big that you might want to stop reading soon enough.','I guess I could make this a medium message, so like five more words?','Last but not least this is just going to be a message, of no importance. Why are you still reading?'],
     'winner': ''
     }
 
