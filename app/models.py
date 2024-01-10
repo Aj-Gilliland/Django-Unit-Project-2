@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Account(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
-    profile_picture = models.ImageField(null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
 class Message(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)

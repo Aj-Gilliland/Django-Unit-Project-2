@@ -13,9 +13,9 @@
     <br>
 
     <div class='container text-center'>
-        {% if details.profile_pic.url %}
+        {% if profile_pic != None %}
             <div class='rounded-circle-container'>
-                <img src="{{ details.profile_pic.url }}" alt="Profile Picture">
+                <img src="{{ profile_pic.url|safe }}" alt="Profile Picture">
             </div>
         {% else %}
             <div class='rounded-circle-container'>

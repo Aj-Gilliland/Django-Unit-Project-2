@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from app.views import *
 from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
@@ -15,3 +16,6 @@ urlpatterns = [
     path('settings/', settingPage, name='setting'),
     path('dashboard/', adminPage, name='dashboard'), #admin only
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
