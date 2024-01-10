@@ -9,6 +9,7 @@ class Account(models.Model):
 class Message(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     content = models.CharField(max=200)
+    upvote = models.OneToOneField(Upvote)
 
 class BugReport(models.Model):
     account = models.OneToOneField(Account, on_delete=models.CASCADE)
@@ -24,3 +25,5 @@ class Upvote(models.Model):
     message = models.OneToOneField(Message, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now=True)
 
+# account -> default user field 
+# 
