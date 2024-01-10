@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 
 class Account(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
     profile_picture = models.ImageField(null=True, blank=True)
 
 class Message(models.Model):
@@ -17,6 +16,8 @@ class BugReport(models.Model):
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.content
+    messages = models.ForeignKey(Message, null=True, on_delete=models.SET_NULL, related_name='bug_report_messages')
+    most_correct = models.OneToOneField(Message, null=True, on_delete=models.SET_NULL, related_name='most_correct_bug_report')
 
 class Notification(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -25,7 +26,7 @@ class Notification(models.Model):
         return self.content
     
 class Upvote(models.Model):
-    accounts = models.ManyToManyField(Account)
+    accounts = models.ManyToManyField(Account, related_name="upvotes")
     message = models.OneToOneField(Message, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now=True)
     def __str__(self):
