@@ -36,7 +36,16 @@ class Upvote(models.Model):
 
 #### methods ####
     
-#account   
+#account 
+      
+#returns true if there is an account associated else returns false 
+def hasAccount(user):
+    try:
+        account = Account.objects.get(user=user)   
+        return True
+    except:
+        return False 
+
 def makeAccount(user):
     account = Account(user=user)     
     account.save()

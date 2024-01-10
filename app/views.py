@@ -69,7 +69,12 @@ def loginPage(request:HttpRequest)->HttpResponse:
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                #vvvvvvv   this associates a user with an account if they are not already 
+                if hasAccount(user):
+                    return redirect('home')
+                else:
+                    makeAccount(user)
+                    return redirect('home')
             else:
                 context = {'Incorrect_username_or_password':'Incorrect username or password'}
                 return render (request, 'login.html', context)
