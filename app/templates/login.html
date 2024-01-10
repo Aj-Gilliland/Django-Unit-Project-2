@@ -23,7 +23,7 @@
                 <div class="d-flex justify-content-center form_container">
                     <form method="POST" action="">
                         {% csrf_token %}
-                        <p class='error'>{{Incorrect_username_or_password}}</p>
+                        <p class='error errorShadow'>{{Incorrect_username_or_password}}</p>
 
                         <div class="input-group mb-3">
                             <input type="text" name="username" placeholder="Username..." class="form-control">

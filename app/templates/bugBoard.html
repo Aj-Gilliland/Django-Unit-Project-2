@@ -1,7 +1,52 @@
 
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 
+    {% comment %} sidebar {% endcomment %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block background-brown sidebar">
+                <!-- Sidebar content goes here -->
+                {% comment %} tab panels or list groups {% endcomment %}
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <br>
+
+            {% for i in bugReports %}
+                <div class="card border-blue boarderMed blue-box-shadow">
+                    <div class="card-title">
+                        <h1 class="card-title text-center">{{ i.title }}</h1>
+                    </div>
+                    <div class='card-body'>
+                        <p class="card-text">{{ i.content }}</p>
+                        
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">
+                            View responses 
+                        </button>
+
+                        {% comment %} Collapsible content {% endcomment %}
+                        <div class="collapse" id="collapseMessages{{ forloop.counter }}">
+                            <div class="">
+                                {% for msg in i.messages %}
+                                    <div class='upVoteDiv'>
+                                        <p>{{ msg }}</p>
+                                        <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
+                                    </div>                                   
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+            {% endfor %}
+
+            {% comment %} continue side bar {% endcomment %}
+            </main>
+        </div>
+    </div>
 
 {% endblock content %}

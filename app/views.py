@@ -9,14 +9,32 @@ from django.contrib.auth import password_validation
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
+
 
 def homePage(request:HttpRequest)->HttpResponse:
-    context = {}
-    return render(request, "home.html", context)
+    if request.user.is_authenticated:
+        return redirect('bugBoard')
+    else:
+        context = {}
+        return render(request, "home.html", context)
 
 @login_required(login_url='login')
 def bugBoardPage(request:HttpRequest)->HttpResponse:
-    context = {}
+    fakeObject = {
+    'title': "Uhhh python broke",
+    'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help.',
+    'messages': ['msg1','msg2','msg3'],
+    'winner': 'Adrian'
+    }
+    fakeObject2 = {
+    'title': "Uhhh python broke again",
+    'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help...again.',
+    'messages': ['msg1','msg2','msg3','msg4'],
+    'winner': ''
+    }
+
+    context = {'bugReports':[fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2]}
     return render(request, "bugBoard.html", context)
 
 @login_required(login_url='login')
@@ -63,14 +81,20 @@ def logoffPage(request:HttpRequest)->HttpResponse:
     return redirect('login')
 
 @login_required(login_url='login')
-def settingPage(request:HttpRequest)->HttpResponse:
+def settingPage(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
             return redirect('setting')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
+            print(f'The form was not completed correctly: {form.errors}')  
     else:
         form = PasswordChangeForm(request.user)
-        context = {'form':form}
-        return render (request, 'setting.html', context)
+
+    context = {'form': form}
+    return render(request, 'setting.html', context)

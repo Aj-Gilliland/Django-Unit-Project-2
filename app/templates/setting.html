@@ -1,13 +1,60 @@
-
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
+<br>
 
-<form action = "" method = "post">
-    {% csrf_token %}
-    {{form.as_p }}
-    <input type="submit" value=Submit">
-</form>
+<div class='container text-center marginMiddle photoMaxWidth'>
+    <a a class="linkStripper text-center" href="{% url 'home' %}">
+        {% if details.profile_pic.url %}
+            <div class='rounded-circle-container2'>
+                <img src="{{ details.profile_pic.url }}" alt="Profile Picture">
+            </div>
+        {% else %}
+            <div class='rounded-circle-container2'>
+                <img src="{% static 'images/default_no_profile_pic.jpg' %}" alt="Default Profile">
+            </div>
+        {% endif %}
+        <p class=''> Edit Profile Picture </p>
+    </a>
+</div>
 
+<br>
+
+<div class='maxWidthBox container text-center bg-light d-smoke rounded w-sm-75 w-lg-25 p-4'>
+    <h3> Change Password </h3>
+    <div class=''>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="error errorShadow"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            <p class='error'>{{ Incorrect_username_or_password }}</p>
+
+            <div class="input-group mb-2">
+                <input type="password" name="old_password" placeholder="Old Password..." class="form-control">
+            </div>
+
+            <div class="input-group mb-2">
+                <input type="password" name="new_password1" placeholder="New Password..." class="form-control">
+            </div>
+
+            <div class="input-group mb-2">
+                <input type="password" name="new_password2" placeholder="Confirm New Password..." class="form-control">
+            </div>
+
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <input class="btn login_btn" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
 
 {% endblock content %}
+

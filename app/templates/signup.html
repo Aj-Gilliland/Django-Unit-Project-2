@@ -14,14 +14,13 @@
         <br>
         <br>
         <div class='d-flex justify-content-center'> 
-            <div class='bg-light d-smoke rounded w-sm-75 w-lg-25 p-4'>
+            <div class=' bg-light d-smoke rounded w-sm-100 w-lg-50 p-4'>
                 <div class='container middleOfScreen mt-5'>
                     <h1 id="form-title" class='text-center'>Create Account</h1>
                     <form method="POST" action="">
                         {% csrf_token %}
-                        
                         {% for error in errors %}
-                            <div class="alert alert-danger d-flex middleOfScreen center w-50" role="alert">{{ error|striptags }}</div>
+                            <p class="error errorShadow d-flex middleOfScreen center maxWidthBox" role="alert">{{ error|striptags }}</p>
                         {% endfor %}
                     
                         {% for field in form %}
