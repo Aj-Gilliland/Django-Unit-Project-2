@@ -5,7 +5,7 @@
 <br>
 
 <div class='container text-center marginMiddle photoMaxWidth'>
-    <a a class="linkStripper" href="{% url 'home' %}">
+    <a a class="linkStripper text-center" href="{% url 'home' %}">
         {% if details.profile_pic.url %}
             <div class='rounded-circle-container2'>
                 <img src="{{ details.profile_pic.url }}" alt="Profile Picture">
@@ -15,7 +15,7 @@
                 <img src="{% static 'images/default_no_profile_pic.jpg' %}" alt="Default Profile">
             </div>
         {% endif %}
-        <p> Edit Profile Picture </p>
+        <p class=''> Edit Profile Picture </p>
     </a>
 </div>
 
