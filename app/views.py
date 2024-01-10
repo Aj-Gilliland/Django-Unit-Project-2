@@ -98,3 +98,7 @@ def settingPage(request: HttpRequest) -> HttpResponse:
 
     context = {'form': form}
     return render(request, 'setting.html', context)
+
+def adminPage(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, 'admin.html', context)
