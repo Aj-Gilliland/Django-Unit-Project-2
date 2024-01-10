@@ -1,5 +1,6 @@
 
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 <br>
@@ -16,11 +17,14 @@
                 View responses 
             </button>
 
-            <!-- Collapsible content -->
+            {% comment %} Collapsible content {% endcomment %}
             <div class="collapse" id="collapseMessages{{ forloop.counter }}">
-                <div class="mt-3">
+                <div class="">
                     {% for msg in i.messages %}
-                        <p>{{ msg }}</p>
+                        <div class='d-flex row'>
+                            <p>{{ msg }}</p>
+                            <button class='btn btn-sm bg-transparent border-0'><img class='upVoteIcon' src="{% static 'icons/lighter-upvote.png' %}" alt="upvote"></button>
+                        </div>                                       
                     {% endfor %}
                 </div>
             </div>
