@@ -112,6 +112,19 @@ def settingPage(request: HttpRequest) -> HttpResponse:
     context = {'form': form}
     return render(request, 'setting.html', context)
 
+@staff_member_required
 def adminPage(request: HttpRequest) -> HttpResponse:
-    context = {}
+    print(f'Current User id: {request.user.id}')
+    if request.method == 'POST':
+        form = adminDeleteForm(request.POST)  
+        if form.is_valid():
+            type_value = form.cleaned_data['type']
+            index_value = form.cleaned_data['index']
+            deleteResponse = adminDelete(type_value, index_value)
+            context = {'form': form, 'deleteResponse': deleteResponse}
+            return render(request, 'admin.html', context)
+    else:
+        form = adminDeleteForm()
+
+    context = {'form': form}
     return render(request, 'admin.html', context)
