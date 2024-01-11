@@ -106,29 +106,26 @@ from django.core.exceptions import ObjectDoesNotExist
 def adminDelete(type, num):
     try:
         index = int(num)#reindex
-
         if type == 'user':
             thing = User.objects.get(id=index)
         elif type == 'message':
             thing = Message.objects.get(id=index)
         elif type == 'bug_report':
             thing = BugReport.objects.get(id=index)
+        elif type == 'account':
+            thing = Account.objects.get(id=index)           
         else:
             print(f'Invalid type: {type}')
             return f'Invalid type: {type}'
-
         thing.delete()
         print(f'{type} Deleted.')
         return f'{type} Deleted.'
-    
     except ObjectDoesNotExist:
         print(f'{type} not found with id {index}')
         return f'{type} not found with id {index}'
-    
     except ValueError:
         print('Invalid number format')
         return 'Invalid number format'
-
     except Exception as e:
         print(f'An error occurred: {e}')
         return f'An error occurred: {e}'
