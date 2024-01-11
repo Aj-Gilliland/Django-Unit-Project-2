@@ -17,6 +17,7 @@ class BugReport(models.Model):
     prompt = models.CharField(max_length=255, null=True)
     messages = models.ForeignKey(Message, related_name='bug_reports_messages', null=True, on_delete=models.SET_NULL)
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
+    date_created = models.DateField(auto_now=True)
 
 class Notification(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
