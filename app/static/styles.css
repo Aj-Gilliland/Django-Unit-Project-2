@@ -18,6 +18,10 @@
   display: inline-block;
 }
 
+.invisHr{
+  color: transparent;
+}
+
 .paddingStripper{
   padding: 0% !important;
 }
@@ -79,6 +83,10 @@
 
 .chonk-font{
   font-size: x-large;
+}
+
+.med-font{
+  font-size: medium !important;
 }
 
 .text-blue{
@@ -149,6 +157,10 @@ body {
 
 .photoMaxWidth{
   max-width: 200px !important;
+}
+
+.maxWidthBoxSmall{
+  max-width: 150px !important;
 }
 
 .maxWidthBox{
