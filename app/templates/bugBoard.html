@@ -14,6 +14,77 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
             <br>
+            
+
+
+
+
+
+
+
+
+
+            
+            <!-- Your button -->
+<!-- Your button -->
+<div>
+    <button class="badge text-bg-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#reportModal">Make a Report</button>
+</div>
+
+<!-- The modal for the form -->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel">Report Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Your form goes here -->
+                <form method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <!-- Add your form fields here -->
+                    <div class="mb-3">
+                        <label for="reportPrompt" class="form-label">Report Prompt</label>
+                        <input type="text" class="form-control" id="reportPrompt" name="prompt" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reportMessages" class="form-label">Report Messages</label>
+                        <select class="form-control" id="reportMessages" name="messages" required>
+                            <!-- Populate this dropdown with your message options -->
+                            <!-- Example: -->
+                            <option value="1">Message 1</option>
+                            <option value="2">Message 2</option>
+                        </select>
+                    </div>
+                    <!-- You can add more fields based on your model -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <br>
 
             {% for i in bugReports %}
                 <div class="card border-blue boarderMed blue-box-shadow">
@@ -30,7 +101,7 @@
                         <p class="card-text">{{ i.content }}</p>
                         <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
             
-                        <!-- Comment button triggering the form -->
+                         {% comment %} Comment button triggering the form {% endcomment %}
                         <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
             
                         {% comment %} Collapsible content {% endcomment %}

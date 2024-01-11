@@ -7,18 +7,22 @@ from django.core.exceptions import ObjectDoesNotExist
 class Account(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
-
+    
 class Message(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
     content = models.CharField(max_length=255, unique=True)
- 
+    def __str__(self):
+        return self.content
+    
 class BugReport(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
     prompt = models.CharField(max_length=255, null=True)
-    messages = models.ForeignKey(Message, related_name='bug_reports_messages', null=True, on_delete=models.SET_NULL)
+    messages = models.ForeignKey(Message, related_name='bug_reports_messages', null=True, blank=True, on_delete=models.SET_NULL)
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
     date_created = models.DateField(auto_now=True)
-
+    def __str__(self):
+        return self.prompt
+    
 class Notification(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     content = models.CharField(max_length=255)
