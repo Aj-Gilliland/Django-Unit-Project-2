@@ -41,6 +41,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                             </li>
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'dashboard' %}">Admin Panel</a>
+                                </li>
+                            {% endif %}
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'home' %}">Home</a>

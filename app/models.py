@@ -29,15 +29,19 @@ class Upvote(models.Model):
 
 ####MISC####
     
+#needs to be redone post model change
 #for graph
-def getBugsSolvedPerMonth(account):
+def getBugsSolvedPerMonth(accountObject):
     bugs_per_month = [0] * 12
     currentYear = datetime.now().year
-    bug_reports = BugReport.objects.filter(account=account)
+    bug_reports = BugReport.objects.filter(messages__account=accountObject)
+    print(bug_reports)
     for bug_report in bug_reports:
+        print(bug_report.date_created)
         if bug_report.date_created.year == currentYear:
-            month_index = bug_report.date_created.month
+            month_index = bug_report.date_created.month - 1
             bugs_per_month[month_index] += 1
+    print(bugs_per_month)
     return bugs_per_month
    
 ####account#### 
@@ -85,3 +89,10 @@ def messageHasUpVote(message):
 
 def addMessageToUpVote(account,message):
     ...
+
+####bugReport####
+    
+def getUserBugReports(user):
+    account = getAccountFor(user)
+    reports = BugReport.objects.filter(account=account)
+    return reports

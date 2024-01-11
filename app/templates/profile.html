@@ -68,7 +68,7 @@
         </div>
     </div>
     
-    <script>
+    {% comment %} <script>
         var ctx = document.getElementById('bugFixChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -95,7 +95,8 @@
                     }],
                     y: [{
                         ticks: {
-                            stepSize: 10,
+                            beginAtZero: true,
+                            stepSize: 5,
                             max: 50,
                             min: 0
                         },
@@ -106,8 +107,37 @@
                 }
             }
         });
+    </script>     {% endcomment %}
+    <script>
+        var ctx = document.getElementById('bugFixChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly Data',
+                    data: [{% for tokenMonth in totalTokenList %}{{ tokenMonth }},{% endfor %}],
+                    backgroundColor: 'rgba(108, 174, 196, 0.2)', // Area under the line color
+                    borderColor: '#81d3ef', // Line color
+                    borderWidth: 5, // Line thickness
+                    pointRadius: 0, // Removes dots
+                    fill: true // Fill the area under the line
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 5,
+                        max: 50,
+                        min: 0
+                    }
+                }
+            }
+        });
     </script>
-          
+    
+    
     <br>
 
     <div class="col-md-12 container w-75">
