@@ -18,8 +18,13 @@
             {% for i in bugReports %}
                 <div class="card border-blue boarderMed blue-box-shadow">
                     <div class="card-title">
-                        <h1 class="card-title text-center">{{ i.title }}</h1>
-                        <p class="text-center">by: {{ i.account.user.username }}</p>
+                        <h1 class="mx-auto card-title row d-flex justify-content-center mt-3">
+                            {{ i.title }}
+                            <hr class='invisHr'>
+                            <span class="maxWidthBoxSmall med-font badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+                                <img class="rounded-circle me-1" width="24" height="24" src="https://github.com/mdo.png" alt="">By: {{account.user.username}}
+                            </span>              {% comment %} filler untill models r finalized!!!!!!! {% endcomment %}
+                        </h1>
                     </div>
                     <div class='card-body'>
                         <p class="card-text">{{ i.content }}</p>

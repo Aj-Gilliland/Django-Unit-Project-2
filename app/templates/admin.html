@@ -1,7 +1,40 @@
-
 {% extends "base.html" %}
 {% block content %}
 
-<h1> hi </h1>
+<br>
+
+<div class='container maxWidthBoxBig'>
+    <div class="card w-75 mx-auto">
+        <h1 class='text-center'>Delete Item</h1>
+        {% if deleteResponse %}
+            <p class='text-center'> {{deleteResponse}} </p>
+        {% endif %}
+        <form id="deleteForm" action="{% url 'dashboard' %}" class='center marginMiddle' method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3 maxWidthBox">
+                <label for="itemType" class="form-label">Select Item Type:</label>
+                <select class="form-select" id="itemType" name="type" required>
+                    <option value="user">User</option>
+                    <option value="account">Account</option>
+                    <option value="message">Message</option>
+                    <option value="bug_report">Bug Report</option>
+                    
+                </select>
+            </div>
+        
+            <div class="mb-3 maxWidthBox">
+                <label for="itemId" class="form-label">Item ID:</label>
+                <input type="number" class="form-control" id="itemId" name="index" required>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block mb-3">Delete</button>
+        </form>        
+    </div>
+</div>
+
+
+<br>
+<hr class='prettyHr'>
+<br>
 
 {% endblock content %}

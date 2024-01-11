@@ -1,17 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class Account(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
 class Message(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
     content = models.CharField(max_length=255, unique=True)
  
 class BugReport(models.Model):
-    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    account = models.OneToOneField(Account, null=True, on_delete=models.SET_NULL)
     prompt = models.CharField(max_length=255, null=True)
     messages = models.ForeignKey(Message, related_name='bug_reports_messages', null=True, on_delete=models.SET_NULL)
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
@@ -96,3 +98,34 @@ def getUserBugReports(user):
     account = getAccountFor(user)
     reports = BugReport.objects.filter(account=account)
     return reports
+
+####admin####
+
+from django.core.exceptions import ObjectDoesNotExist
+
+def adminDelete(type, num):
+    try:
+        index = int(num)#reindex
+        if type == 'user':
+            thing = User.objects.get(id=index)
+        elif type == 'message':
+            thing = Message.objects.get(id=index)
+        elif type == 'bug_report':
+            thing = BugReport.objects.get(id=index)
+        elif type == 'account':
+            thing = Account.objects.get(id=index)           
+        else:
+            print(f'Invalid type: {type}')
+            return f'Invalid type: {type}'
+        thing.delete()
+        print(f'{type} Deleted.')
+        return f'{type} Deleted.'
+    except ObjectDoesNotExist:
+        print(f'{type} not found with id {index}')
+        return f'{type} not found with id {index}'
+    except ValueError:
+        print('Invalid number format')
+        return 'Invalid number format'
+    except Exception as e:
+        print(f'An error occurred: {e}')
+        return f'An error occurred: {e}'
