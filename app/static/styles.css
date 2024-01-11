@@ -10,6 +10,14 @@
 
 
 /* miscellaneous */
+
+
+.prettyHr{
+  width: 5px;
+  height: 20px; 
+  display: inline-block;
+}
+
 .paddingStripper{
   padding: 0% !important;
 }
