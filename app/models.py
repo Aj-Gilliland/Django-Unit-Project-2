@@ -21,7 +21,7 @@ class BugReport(models.Model):
     title = models.CharField(max_length=255, null=True)
     prompt = models.CharField(max_length=255, null=True)
     messages = models.ManyToManyField(Message, related_name='bug_reports_messages', null=True, blank=True)
-    most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, on_delete=models.SET_NULL)
+    most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, blank=True, on_delete=models.SET_NULL)
     date_created = models.DateField(auto_now=True)
     def __str__(self):
         return self.prompt
@@ -44,14 +44,11 @@ class Upvote(models.Model):
 def getBugsSolvedPerMonth(accountObject):
     bugs_per_month = [0] * 12
     currentYear = datetime.now().year
-    bug_reports = BugReport.objects.filter(messages__account=accountObject)
-    print(bug_reports)
+    bug_reports = BugReport.objects.filter(account=accountObject, date_created__year=currentYear)
     for bug_report in bug_reports:
-        print(bug_report.date_created)
-        if bug_report.date_created.year == currentYear:
-            month_index = bug_report.date_created.month - 1
-            bugs_per_month[month_index] += 1
-    print(bugs_per_month)
+        month_index = bug_report.date_created.month - 1
+        bugs_per_month[month_index] += 1
+
     return bugs_per_month
    
 ####account#### 

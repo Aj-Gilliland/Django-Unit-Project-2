@@ -77,12 +77,12 @@
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
                             <div class="">
                                 {% comment %} .all keeps this dormant, however we need to make this list iterable {% endcomment %}
-                                {% for msg in i.messages.all %}
+                                {% comment %} {% for msg in i.messages.all %}
                                     <div class='upVoteDiv'>
                                         <p>{{ msg.content }}</p>
                                         <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
                                     </div>                                   
-                                {% endfor %} 
+                                {% endfor %}  {% endcomment %}
                             </div>
                         </div>
                     </div>
