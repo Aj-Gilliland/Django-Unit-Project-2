@@ -97,8 +97,6 @@ def messageHasUpVote(message):
         print('Message has no upvote')
         return False
 
-def addMessageToUpVote(account,message):
-    ...
 
 ####bugReport####
     
@@ -112,7 +110,6 @@ def getUserBugReports(user):
 
 ####admin####
 
-from django.core.exceptions import ObjectDoesNotExist
 
 def adminDelete(type, num):
     try:
