@@ -132,13 +132,18 @@ body,html{
 body {
   margin: 0;
   padding: 0;
-  background-image: url('your-image.jpg');
+  /* background-image: url('your-image.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 /* end all */
+
+/* home */
+.homeBackground{
+  background-image: url("images/bcca_group_photo.jpg") !important;
+}
 
 /* footer stuff */
 .footerElements{

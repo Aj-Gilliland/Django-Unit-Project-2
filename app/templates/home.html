@@ -1,7 +1,92 @@
+{%load static%}
+<!DOCTYPE html>
+    <html lang="en">
+    <meta charset="UTF-8">
+    <title>Code Connect Hub</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel='stylesheet' href='{% static 'styles.css' %}'>
+    <link rel="shortcut icon" type="image/png" href="{% static 'icons/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{% static 'main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{% extends "base.html" %}
-{% block content %}
+    <body class=' d-flex flex-column min-vh-100 homeBackground'>
 
-<h1> hi </h1>
+        {% comment %} header {% endcomment %}
+        <div class='width100'> 
+            <nav class="navbar navbar-expand-lg navbar-light background-blue">
+                <a class="navbar-brand ms-3" href="{% url 'home' %}">
+                    <img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                </a>
+        
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">       
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'bugBoard' %}">Bug Board</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'setting' %}">Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'dashboard' %}">Admin Panel</a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
-{% endblock content %}
+
+        
+
+        
+
+
+
+
+        {% comment %} Footer {% endcomment %}
+        <footer class="footer mt-auto py-3 background-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {% if request.user.is_authenticated %}
+                            <a class="footerElements" href="{% url 'bugBoard'%}">Bug Board</a>
+                            <a class="footerElements" href="{% url 'profile'%}">Profile</a>
+                            <a class="footerElements" href="{% url 'setting'%}">Settings</a>
+                            <a class="footerElements" href="{% url 'logout'%}">Logout</a>
+                        {% else %}
+                            <a class="footerElements" href="{% url 'home'%}">Home</a>
+                            <a class="footerElements" href="{% url 'login'%}">Login</a>
+                        {% endif %}
+                        <a href="{% url 'home'%}"><img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;"></a>
+                    </div>
+                    <p class='small text-center'>&copy;All Rights Reserved 2024 Base Camp Coding Academy</p>
+                </div>
+            </div>
+        </footer>
+        <script src="{% static 'main.js' %}"></script>
+    </body>
+</html>

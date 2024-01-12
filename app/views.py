@@ -21,7 +21,7 @@ def homePage(request:HttpRequest)->HttpResponse:
 
 @login_required(login_url='login')
 def bugBoardPage(request:HttpRequest)->HttpResponse:
-    # try:
+    # try:        
         reportList = getAllReports()
         context = {'bugReports':reportList}
         return render(request, "bugBoard.html", context)

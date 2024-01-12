@@ -8,7 +8,7 @@ class Account(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     def __str__(self):
-        return self.user.username
+        return str(self.id)
         
 class Message(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
@@ -108,8 +108,17 @@ def getUserBugReports(user):
     reports = BugReport.objects.filter(account=account)
     return reports
 
-####admin####
+# # report_commented_on,account_sending_message <<<this goes in params post testing
+# def addMessage():
+#     report_commented_on = BugReport.objects.get(prompt = "Iv got loads of problems, omg so so many problems. One of them is in fact that I'm running out of words to use here to fill the space. Its not a joke I just want to make sure that the software can handle it.")
+#     account_sending_message = Account.objects.get(id = 2)
+#     new_message = Message(content='This is a message, its pretty cool. You can read it and stuff.',account=account_sending_message)
+#     new_message.save()
+#     report_commented_on.messages.add(new_message)
+#     report_commented_on.save()
 
+
+####admin####
 
 def adminDelete(type, num):
     try:
