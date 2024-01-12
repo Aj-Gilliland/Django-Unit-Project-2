@@ -76,6 +76,7 @@
                         {% comment %} Collapsible content {% endcomment %}
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
                             <div class="">
+                                {% comment %} .all keeps this dormant, however we need to make this list iterable {% endcomment %}
                                 {% for msg in i.messages.all %}
                                     <div class='upVoteDiv'>
                                         <p>{{ msg.content }}</p>
