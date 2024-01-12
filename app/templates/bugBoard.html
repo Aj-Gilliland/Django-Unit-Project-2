@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block background-brown sidebar">
-                <!-- Sidebar content goes here -->
+                {% comment %} Sidebar content goes here  {% endcomment %}
                 {% comment %} tab panels or list groups {% endcomment %}
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -22,16 +22,13 @@
 
 
 
+{% comment %}    WIP    {% endcomment %}
 
 
-            
-            <!-- Your button -->
-<!-- Your button -->
 <div>
     <button class="badge text-bg-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#reportModal">Make a Report</button>
 </div>
 
-<!-- The modal for the form -->
 <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -40,24 +37,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Your form goes here -->
-                <form method="POST" action="{% url 'home' %}">
+                <form method="POST" action="{% url 'bugBoard' %}">
                     {% csrf_token %}
-                    <!-- Add your form fields here -->
                     <div class="mb-3">
                         <label for="reportPrompt" class="form-label">Report Prompt</label>
                         <input type="text" class="form-control" id="reportPrompt" name="prompt" required>
                     </div>
                     <div class="mb-3">
                         <label for="reportMessages" class="form-label">Report Messages</label>
-                        <select class="form-control" id="reportMessages" name="messages" required>
-                            <!-- Populate this dropdown with your message options -->
-                            <!-- Example: -->
-                            <option value="1">Message 1</option>
-                            <option value="2">Message 2</option>
-                        </select>
                     </div>
-                    <!-- You can add more fields based on your model -->
                 </form>
             </div>
             <div class="modal-footer">
@@ -93,12 +81,12 @@
                             {{ i.title }}
                             <hr class='invisHr'>
                             <span class="maxWidthBoxSmall med-font badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
-                                <img class="rounded-circle me-1" width="24" height="24" src="https://github.com/mdo.png" alt="">By: {{account.user.username}}
-                            </span>              {% comment %} filler untill models r finalized!!!!!!! {% endcomment %}
+                                <img class="rounded-circle me-1" width="24" height="24" src="{% if i.account.profile_picture %}{{ i.account.profile_picture.url }}{% endif %}" alt="BCCA">by {{i.account.user}}
+                            </span>        
                         </h1>
                     </div>
                     <div class='card-body'>
-                        <p class="card-text">{{ i.content }}</p>
+                        <p class="card-text h6">{{ i.prompt }}</p>
                         <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
             
                          {% comment %} Comment button triggering the form {% endcomment %}
@@ -107,18 +95,19 @@
                         {% comment %} Collapsible content {% endcomment %}
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
                             <div class="">
-                                {% for msg in i.messages %}
+                                MESSAGES TEMP DISABLED
+                                {% comment %} {% for msg in i.messages %}
                                     <div class='upVoteDiv'>
                                         <p>{{ msg }}</p>
                                         <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
                                     </div>                                   
-                                {% endfor %}
+                                {% endfor %} {% endcomment %}
                             </div>
                         </div>
                     </div>
                 </div>
             
-                <!-- Comment workflow -->
+              {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
