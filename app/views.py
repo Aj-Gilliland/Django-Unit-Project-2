@@ -23,7 +23,8 @@ def homePage(request:HttpRequest)->HttpResponse:
 def bugBoardPage(request:HttpRequest)->HttpResponse:
     # try:        
         reportList = getAllReports()
-        context = {'bugReports':reportList}
+        notificationList = getNotificationsFor(request.user)
+        context = {'bugReports':reportList, 'notificationList':notificationList}
         return render(request, "bugBoard.html", context)
     # except:
     #     print('Error, loading bugBoardPage in Safe mode')

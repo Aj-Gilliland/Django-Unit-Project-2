@@ -30,7 +30,7 @@
     <br>
     <br>
     
-    <div class='d-flex justify-content-center'>
+    <div class='d-flex justify-content-center'> 
         <div class='center row w-75'>
             <div class="container min-width-50 left_element" style="justify-content-between;">
                 <div class="card background-blue">
@@ -38,8 +38,8 @@
                         Notifications
                     </div>
                     <ul class="list-group list-group-flush overflow">
-                        {% for notification in notifications %}
-                            <li class="list-group-item border-0">{{ notification }}</li>
+                        {% for notification in notificationList %}
+                            <li class="list-group-item border-0">{{ notification.content }}</li>
                         {% endfor %}
                     </ul>
                 </div>

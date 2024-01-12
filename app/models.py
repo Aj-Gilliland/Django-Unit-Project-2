@@ -75,9 +75,10 @@ def getAccountFor(user):
 
 ####notifications####
 
-def getNotificationsFor(account):
+def getNotificationsFor(user):
+    account = getAccountFor(user)
     notifications = Notification.objects.filter(account=account)
-    return notifications
+    return list(notifications)
 
 ####messages####
 
