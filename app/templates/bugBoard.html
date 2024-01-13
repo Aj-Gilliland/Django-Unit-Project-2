@@ -57,38 +57,25 @@
             <br>
 
             {% for i in bugReports %}
+                {% if i.most_correct %}
+                
                 <div class="card border-blue boarderMed blue-box-shadow">
                     <div class="card-title">
                         <h1 class="mx-auto card-title row d-flex justify-content-center mt-3">
                             {{ i.title }}
                             <hr class='invisHr'>
-                            <span class="maxWidthBoxSmall med-font badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+                            <span class="minContent med-font badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
                                 <img class="rounded-circle me-1" width="24" height="24" src="{% if i.account.profile_picture %}{{ i.account.profile_picture.url }}{% endif %}" alt="BCCA">by {{i.account.user}}
                             </span>        
                         </h1>
                     </div>
                     <div class='card-body'>
                         <p class="card-text h6">{{ i.prompt }}</p>
-                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
-            
-                         {% comment %} Comment button triggering the form {% endcomment %}
-                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
-            
-                        {% comment %} Collapsible content {% endcomment %}
-                        <div class="collapse" id="collapseMessages{{ forloop.counter }}">
-                            <div class="">
-                                {% for msg in i.messages.all %}
-                                    <div class='upVoteDiv'>
-                                        <p>{{ msg.content }}</p>
-                                        <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
-                                    </div>                                   
-                                {% endfor %}  
-                            </div>
-                        </div>
+                        <span class="minContent badge text-bg-primary rounded-pill"><strong>Solution:</strong> {{ i.most_correct }}</span>
                     </div>
                 </div>
             
-              {% comment %} Commenting workflow  {% endcomment %}
+            {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
@@ -104,6 +91,58 @@
                 </div>
             
                 <br>
+
+                {% else %}
+
+                    <div class="card border-blue boarderMed blue-box-shadow">
+                        <div class="card-title">
+                            <h1 class="mx-auto card-title row d-flex justify-content-center mt-3">
+                                {{ i.title }}
+                                <hr class='invisHr'>
+                                <span class="minContent med-font badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+                                    <img class="rounded-circle me-1" width="24" height="24" src="{% if i.account.profile_picture %}{{ i.account.profile_picture.url }}{% endif %}" alt="BCCA">by {{i.account.user}}
+                                </span>        
+                            </h1>
+                        </div>
+                        <div class='card-body'>
+                            <p class="card-text h6">{{ i.prompt }}</p>
+                            <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
+                
+                            {% comment %} Comment button triggering the form {% endcomment %}
+                            <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
+                
+                            {% comment %} Collapsible content {% endcomment %}
+                            <div class="collapse" id="collapseMessages{{ forloop.counter }}">
+                                <div class="">
+                                    {% for msg in i.messages.all %}
+                                        <div class='upVoteDiv'>
+                                            <p>{{ msg.content }}</p>
+                                            <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
+                                        </div>                                   
+                                    {% endfor %}  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                {% comment %} Commenting workflow  {% endcomment %}
+                    <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-transparent border-0">
+                                <form class='bg-transparent' method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="mb-3 bg-transparent">
+                                        <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <br>
+
+            {% endif %}
             {% endfor %}
             
 

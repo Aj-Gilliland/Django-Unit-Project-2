@@ -1,6 +1,7 @@
 /* color pallet */
 :root {
   --dark_brown:#6b4f35;
+  --light_brown: #725a43;
   --brown:#7a593a;
   --dark_blue:#6caec4; 
   --blue:#81d3ef;
@@ -11,6 +12,9 @@
 
 /* miscellaneous */
 
+.opaqe{
+  opacity: 100% !important;
+}
 
 .prettyHr{
   width: 5px;
@@ -113,6 +117,13 @@
   background-color: var(--brown) !important;
 }
 
+.bluebar{
+  background-color:#6caec4bb;
+  color:var(--brown) !important;
+  text-align: center;
+  border-radius: 20px;
+}
+
 .background-blue{
   background-color: var(--blue) !important;
 }
@@ -145,6 +156,19 @@ body {
   background-image: url("images/bcca_group_photo_enhance.png") !important;
 }
 
+.missonstatement{
+  width:300px;
+  background-color: white;
+  position: relative;
+  left:1100px;
+  top:300px;
+  opacity:0.9;
+  border-color: var(--dark_brown);
+  border-width: 4px;
+  text-align:center;
+  border-radius: 20px;
+}
+
 /* footer stuff */
 .footerElements{
   text-decoration: none;
@@ -164,8 +188,19 @@ body {
   max-width: 200px !important;
 }
 
+.minContent{
+  max-width: min-content !important;
+}
+
+.minContentHeight{
+  max-height: min-content !important;
+}
 .maxWidthBoxSmall{
   max-width: 150px !important;
+}
+
+.maxWidthBoxSmallMed{  
+  max-width: 200px !important;
 }
 
 .maxWidthBox{

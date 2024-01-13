@@ -19,7 +19,7 @@ class Message(models.Model):
 class BugReport(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=255, null=True)
-    prompt = models.CharField(max_length=255, null=True)
+    prompt = models.TextField(null=True)
     messages = models.ManyToManyField(Message, related_name='bug_reports_messages', null=True, blank=True)
     most_correct = models.OneToOneField(Message, related_name='bug_report_most_correct', null=True, blank=True, on_delete=models.SET_NULL)
     date_created = models.DateField(auto_now=True)
