@@ -44,11 +44,12 @@ class Upvote(models.Model):
 def getBugsSolvedPerMonth(accountObject):
     bugs_per_month = [0] * 12
     currentYear = datetime.now().year
-    bug_reports = BugReport.objects.filter(account=accountObject, date_created__year=currentYear)
+    bug_reports = BugReport.objects.all()
     for bug_report in bug_reports:
-        month_index = bug_report.date_created.month - 1
-        bugs_per_month[month_index] += 1
-
+        if (bug_report.date_created.year == currentYear) and (bug_report.most_correct.account.user == accountObject.user):
+            month_index = bug_report.date_created.month - 1
+            bugs_per_month[month_index] += 1
+    print(bugs_per_month)
     return bugs_per_month
    
 ####account#### 
