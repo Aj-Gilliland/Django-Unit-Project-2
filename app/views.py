@@ -121,8 +121,8 @@ def settingPage(request: HttpRequest) -> HttpResponse:
             print(f'The form was not completed correctly: {form.errors}')  
     else:
         form = PasswordChangeForm(request.user)
-
-    context = {'form': form}
+    account = getAccountFor(request.user)
+    context = {'account':account, 'form': form}
     return render(request, 'setting.html', context)
 
 @staff_member_required
