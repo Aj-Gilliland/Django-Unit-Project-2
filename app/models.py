@@ -46,9 +46,10 @@ def getBugsSolvedPerMonth(accountObject):
     currentYear = datetime.now().year
     bug_reports = BugReport.objects.all()
     for bug_report in bug_reports:
-        if (bug_report.date_created.year == currentYear) and (bug_report.most_correct.account.user == accountObject.user):
-            month_index = bug_report.date_created.month - 1
-            bugs_per_month[month_index] += 1
+        if bug_report.most_correct:
+            if (bug_report.date_created.year == currentYear) and (bug_report.most_correct.account.user == accountObject.user):
+                month_index = bug_report.date_created.month - 1
+                bugs_per_month[month_index] += 1
     print(bugs_per_month)
     return bugs_per_month
    
