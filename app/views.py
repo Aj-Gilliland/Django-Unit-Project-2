@@ -19,12 +19,19 @@ def homePage(request:HttpRequest)->HttpResponse:
         context = {}
         return render(request, "home.html", context)
 
-@login_required(login_url='login')
-def bugBoardPage(request:HttpRequest)->HttpResponse:
-    # try:        
-        reportList = getAllReports()
-        context = {'bugReports':reportList}
-        return render(request, "bugBoard.html", context)
+def bugBoardPage(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        report_form = ReportForm(request.POST)
+        if report_form.is_valid():
+            title = report_form.cleaned_data['title']
+            prompt = report_form.cleaned_data['prompt']
+            user = request.user
+            makeReport(user,prompt,title)
+    else:
+        report_form = ReportForm()
+    reportList = getAllReports()
+    context = {'bugReports': reportList, 'report_form': report_form,}
+    return render(request, "bugBoard.html", context)
     # except:
     #     print('Error, loading bugBoardPage in Safe mode')
     #     fakeObject = {

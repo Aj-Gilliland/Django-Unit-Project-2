@@ -108,6 +108,11 @@ def getUserBugReports(user):
     reports = BugReport.objects.filter(account=account)
     return reports
 
+def makeReport(user,prompt,title):
+    account = getAccountFor(user)
+    report = BugReport(title=title, prompt=prompt, account=account)
+    report.save()
+
 # # report_commented_on,account_sending_message <<<this goes in params post testing
 # def addMessage():
 #     report_commented_on = BugReport.objects.get(prompt = "Iv got loads of problems, omg so so many problems. One of them is in fact that I'm running out of words to use here to fill the space. Its not a joke I just want to make sure that the software can handle it.")

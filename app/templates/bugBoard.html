@@ -34,17 +34,18 @@
                     <form method="POST" action="{% url 'bugBoard' %}">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="reportPrompt" class="form-label">Report Prompt</label>
-                            <input type="text" class="form-control" id="reportPrompt" name="prompt" required>
+                            <label for="reportTitle" class="form-label">Title</label>
+                            {{ report_form.title }}
                         </div>
                         <div class="mb-3">
-                            <label for="reportMessages" class="form-label">Report Messages</label>
+                            <label for="reportPrompt" class="form-label">Leave your bugs here</label>
+                            {{ report_form.prompt }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit Report</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit Report</button>
                 </div>
             </div>
         </div>
