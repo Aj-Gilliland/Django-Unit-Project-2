@@ -15,44 +15,37 @@
 
             <br>
 
+            <div>
+                <button class="badge text-bg-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#reportModal">Make a Report</button>
+            </div>
 
-{% comment %}    WIP    {% endcomment %}
-
-
-    <div>
-        <button class="badge text-bg-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#reportModal">Make a Report</button>
-    </div>
-
-    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reportModalLabel">Report Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{% url 'bugBoard' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="reportTitle" class="form-label">Title</label>
-                            {{ report_form.title }}
+            <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reportModalLabel">Report Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                            <label for="reportPrompt" class="form-label">Leave your bugs here</label>
-                            {{ report_form.prompt }}
+                        <div class="modal-body">
+                            <form method="POST" action="{% url 'bugBoard' %}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="reportTitle" class="form-label">Title</label>
+                                    {{ report_form.title }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="reportPrompt" class="form-label">Leave your bugs here</label>
+                                    {{ report_form.prompt }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Submit Report</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit Report</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
 
             <br>
 
@@ -75,7 +68,7 @@
                     </div>
                 </div>
             
-            {% comment %} Commenting workflow  {% endcomment %}
+                {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
@@ -125,7 +118,7 @@
                         </div>
                     </div>
                 
-                {% comment %} Commenting workflow  {% endcomment %}
+                    {% comment %} Commenting workflow  {% endcomment %}
                     <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content bg-transparent border-0">
@@ -144,7 +137,6 @@
 
             {% endif %}
             {% endfor %}
-            
 
             {% comment %} continue side bar {% endcomment %}
             </main>

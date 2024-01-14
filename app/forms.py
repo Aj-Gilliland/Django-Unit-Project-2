@@ -15,3 +15,6 @@ class adminDeleteForm(forms.Form):
 class ReportForm(forms.Form):
     title = forms.CharField(label='Title', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     prompt = forms.CharField(label='Leave your bugs here', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+class pfpChangeForm(forms.Form):
+    picture = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}), label='Select Profile Picture', required=True)

@@ -32,36 +32,15 @@ def bugBoardPage(request: HttpRequest) -> HttpResponse:
     reportList = getAllReports()
     context = {'bugReports': reportList, 'report_form': report_form,}
     return render(request, "bugBoard.html", context)
-    # except:
-    #     print('Error, loading bugBoardPage in Safe mode')
-    #     fakeObject = {
-    #     'title': "Uhhh python broke",
-    #     'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help.',
-    #     'messages': ['msg1','msg2','msg3'],
-    #     'winner': 'Adrian'
-    #     }
-    #     fakeObject2 = {
-    #     'title': "Uhhh python broke again",
-    #     'content':  'Erm the computer is on fire and i dont know what to do. Honestly I think im about to give up, please help...again.',
-    #     'messages': ['this is a message that is slightly long','i assure you that this will be a long message, in fact so big that you might want to stop reading soon enough.','I guess I could make this a medium message, so like five more words?','Last but not least this is just going to be a message, of no importance. Why are you still reading?'],
-    #     'winner': ''
-    #     }
-    #     context = {'bugReports':[fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2,fakeObject,fakeObject2]}
-    #     return render(request, "bugBoard.html", context)
 
 @login_required(login_url='login')
 def profilePage(request:HttpRequest)->HttpResponse:
-    # try:
-        account = getAccountFor(request.user)
-        tokenGraphData = getBugsSolvedPerMonth(account)
-        reportList = getUserBugReports(request.user)
-        notificationList = getNotificationsFor(request.user)
-        context = {'notificationList':notificationList,'totalTokenList':tokenGraphData,'userBugReports':reportList,'profile_pic':account.profile_picture,'notifications':['These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days'],'awardeList':['uPVoted by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug",'upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug"]}
-        return render(request, "profile.html", context)
-    # except:
-    #     print('Loading profile page in safe mode')
-    #     context = {'totalTokenList':[12,33,3,25,31,59,2],'notifications':['These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days'],'userBugReports':['These are test reports','these would be reports that you put out','erm ur bug hasnt been solved in two days','These are test reports','these would be reports that you put out','erm ur bug hasnt been solved in two days'],'awardeList':['upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug",'upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug"]}
-    #     return render(request, "profile.html", context)
+    account = getAccountFor(request.user)
+    tokenGraphData = getBugsSolvedPerMonth(account)
+    reportList = getUserBugReports(request.user)
+    notificationList = getNotificationsFor(request.user)
+    context = {'notificationList':notificationList,'totalTokenList':tokenGraphData,'userBugReports':reportList,'profile_pic':account.profile_picture,'notifications':['These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days','These are test notifactions','leave notifiactions in a list in context','erm ur bug hasnt been solved in two days'],'awardeList':['uPVoted by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug",'upvote by Jordan 2/13/24','upvote by Aj 1/2/24','upvote by Adrian 1/1/24''upvote by Joe 2/13/24',"Your comment received credit for fixing Mathew's bug"]}
+    return render(request, "profile.html", context)
     
 def signupPage(request:HttpRequest)->HttpResponse:
     if request.user.is_authenticated:
@@ -108,22 +87,39 @@ def logoffPage(request:HttpRequest)->HttpResponse:
 
 @login_required(login_url='login')
 def settingPage(request: HttpRequest) -> HttpResponse:
+    password_change_form = None  
+    picture_change_form = None
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            return redirect('setting')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"Error in {field}: {error}")
-            print(f'The form was not completed correctly: {form.errors}')  
+        #checks for password change form
+        if 'password_change_submit' in request.POST:
+            password_change_form = PasswordChangeForm(request.user, request.POST)
+            if password_change_form.is_valid():
+                print('ready to change')
+                user = password_change_form.save()
+                update_session_auth_hash(request, user)
+                return redirect('setting')
+            else:
+                for field, errors in password_change_form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"Error in {field}: {error}")
+                print(f'The password change form was not completed correctly: {password_change_form.errors}')
+        #checks for photo change form
+        elif 'picture_change_submit' in request.POST:
+            picture_change_form = pfpChangeForm(request.POST, request.FILES)
+            if picture_change_form.is_valid():
+                clean_picture = picture_change_form.cleaned_data['picture']
+                changePfp(request.user,clean_picture)
+                return redirect('setting')
+            else:
+                messages.error(request, 'Error updating profile picture.')
+                print(f'The profile picture change form was not completed correctly: {picture_change_form.errors}')
     else:
-        form = PasswordChangeForm(request.user)
+        password_change_form = PasswordChangeForm(request.user)
+        picture_change_form = pfpChangeForm()
     account = getAccountFor(request.user)
-    context = {'account':account, 'form': form}
+    context = {'account': account, 'password_change_form': password_change_form, 'picture_change_form': picture_change_form}
     return render(request, 'setting.html', context)
+
 
 @staff_member_required
 def adminPage(request: HttpRequest) -> HttpResponse:

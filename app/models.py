@@ -72,6 +72,11 @@ def getAccountFor(user):
     account = Account.objects.get(user=user)
     return account     
 
+def changePfp(user,picture):
+    account = getAccountFor(user)
+    account.profile_picture = picture
+    account.save()
+
 ####notifications####
 
 def getNotificationsFor(user):

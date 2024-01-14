@@ -67,47 +67,6 @@
             <canvas id="bugFixChart" width="400" height="200"></canvas>
         </div>
     </div>
-    
-    {% comment %} <script>
-        var ctx = document.getElementById('bugFixChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets: [{
-                    label: 'Monthly Data',
-                    data: [{% for tokenMonth in totalTokenList %}{{ tokenMonth }},{% endfor %}],
-                    backgroundColor: 'rgba(108, 174, 196, 0.2)', // Area under the line color
-                    borderColor: '#81d3ef', // Line color
-                    borderWidth: 5, // Line thickness
-                    pointRadius: 0, // Removes dots
-                    fill: true // Fill the area under the line
-                }]
-            },
-            options: {
-                scales: {
-                    x: [{
-                        type: 'linear',
-                        position: 'bottom',
-                        grid: {
-                            lineWidth: 100 // Adjust gridline thickness on x-axis
-                        }
-                    }],
-                    y: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 5,
-                            max: 50,
-                            min: 0
-                        },
-                        grid: {
-                            lineWidth: 100 // Adjust gridline thickness on y-axis
-                        }
-                    }]
-                }
-            }
-        });
-    </script>     {% endcomment %}
     <script>
         var ctx = document.getElementById('bugFixChart').getContext('2d');
         var myChart = new Chart(ctx, {
