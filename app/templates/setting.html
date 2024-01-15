@@ -38,7 +38,7 @@
             {% comment %} pfp change button {% endcomment %}
             <div class='container text-center mt-3'>
                 <a class="linkStripper" href="#" data-bs-toggle="modal" data-bs-target="#profilePictureModal">
-                    {% if account.profile_picture.url %}
+                    {% if account.profile_picture %}
                         <div class='rounded-circle-container2'>
                             <img src="{{ account.profile_picture.url }}" alt="Profile Picture">
                         </div>
@@ -46,7 +46,6 @@
                         <div class='rounded-circle-container2'>
                             <img src="{% static 'images/default_no_profile_pic.jpg' %}" alt="Default Profile">
                         </div>
-                        <h1>no profile pic</h1>
                     {% endif %}
                     <p class='mt-2'>Edit Profile Picture</p>
                 </a>
