@@ -44,7 +44,7 @@ def bugBoardPage(request: HttpRequest) -> HttpResponse:
             else:
                 print(message_form.errors)
     reportList = getAllReports()
-    context = {'bugReports': reportList, 'report_form': report_form, 'message_form': message_form}
+    context = {'CurrentUserData':{'account':getAccountFor(request.user),'user':request.user},'bugReports': reportList, 'report_form': report_form, 'message_form': message_form}
     return render(request, "bugBoard.html", context)
 
 
