@@ -86,10 +86,11 @@ def getNotificationsFor(user):
 
 ####messages####
 
-def makeMessage(content,account):
+def makeMessage(content,account,report):
     message = Message(content=content,account=account)
     message.save()
-    return message
+    report.messages.add(message)
+    report.save() 
 
 
 ####upvote####
@@ -105,6 +106,10 @@ def messageHasUpVote(message):
 
 ####bugReport####
     
+def getReportById(report_id):
+    report = BugReport.objects.get(id=report_id)
+    return(report)
+
 def getAllReports():
     return list(BugReport.objects.all())
     

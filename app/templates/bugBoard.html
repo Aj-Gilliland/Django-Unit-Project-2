@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Submit Report</button>
+                                    <button type="submit" class="btn btn-primary" name="bug_report">Submit Report</button>
                                 </div>
                             </form>
                         </div>
@@ -72,13 +72,15 @@
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
-                            <form class='bg-transparent' method="post" action="">
+                            <form class='bg-transparent' method="post" action="{% url 'bugBoard' %}">
                                 {% csrf_token %}
                                 <div class="mb-3 bg-transparent">
-                                    <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                                    <textarea class="form-control" id="message" rows="4"></textarea>
+                                    <input type="hidden" name="report_id" value="{{ i.id }}">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                <button type="submit" class="btn btn-primary" name='comment'>Submit Comment</button>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -122,16 +124,17 @@
                     <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content bg-transparent border-0">
-                                <form class='bg-transparent' method="post" action="">
+                                <form class='bg-transparent' method="post" action="{% url 'bugBoard' %}">
                                     {% csrf_token %}
                                     <div class="mb-3 bg-transparent">
-                                        <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                                        <textarea class="form-control" id="message" name='message' rows="4"></textarea>
+                                        <input type="hidden" name="report_id" value="{{ i.id }}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                    <button type="submit" class="btn btn-primary" name='comment'>Submit Comment</button>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 
                     <br>
 

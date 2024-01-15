@@ -19,19 +19,34 @@ def homePage(request:HttpRequest)->HttpResponse:
         context = {}
         return render(request, "home.html", context)
 
+
 def bugBoardPage(request: HttpRequest) -> HttpResponse:
+    report_form = reportForm()
+    message_form = messageForm()
     if request.method == 'POST':
-        report_form = ReportForm(request.POST)
-        if report_form.is_valid():
-            title = report_form.cleaned_data['title']
-            prompt = report_form.cleaned_data['prompt']
-            user = request.user
-            makeReport(user,prompt,title)
-    else:
-        report_form = ReportForm()
+        # checks if report is submitted
+        if 'bug_report' in request.POST:
+            report_form = reportForm(request.POST)
+            if report_form.is_valid():
+                title = report_form.cleaned_data['title']
+                prompt = report_form.cleaned_data['prompt']
+                user = request.user
+                makeReport(user, prompt, title)
+        # checks if message is submitted
+        elif 'message' in request.POST:
+            message_form = messageForm(request.POST)
+            if message_form.is_valid():
+                message = message_form.cleaned_data['message']
+                report_id = message_form.cleaned_data['report_id']
+                report = getReportById(report_id)
+                account = getAccountFor(request.user)
+                makeMessage(message, account, report)
+            else:
+                print(message_form.errors)
     reportList = getAllReports()
-    context = {'bugReports': reportList, 'report_form': report_form,}
+    context = {'bugReports': reportList, 'report_form': report_form, 'message_form': message_form}
     return render(request, "bugBoard.html", context)
+
 
 @login_required(login_url='login')
 def profilePage(request:HttpRequest)->HttpResponse:

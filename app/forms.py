@@ -12,9 +12,14 @@ class adminDeleteForm(forms.Form):
     type = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     index = forms.IntegerField()
 
-class ReportForm(forms.Form):
+class reportForm(forms.Form):
     title = forms.CharField(label='Title', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     prompt = forms.CharField(label='Leave your bugs here', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class pfpChangeForm(forms.Form):
     picture = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control', 'accept': 'image/*'}), label='Select Profile Picture', required=True)
+
+class messageForm(forms.Form):
+    message = forms.CharField(max_length=254, required=True)
+    report_id = forms.CharField(max_length=254, widget=forms.HiddenInput())
+
