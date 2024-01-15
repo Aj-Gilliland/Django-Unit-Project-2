@@ -32,7 +32,7 @@ class Notification(models.Model):
     
 class Upvote(models.Model):
     accounts = models.ManyToManyField(Account, related_name="upvotes")
-    message = models.OneToOneField(Message, on_delete=models.CASCADE)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now=True)
 
 #### methods ####

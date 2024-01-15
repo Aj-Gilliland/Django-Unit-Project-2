@@ -1,6 +1,6 @@
 from .models import *
 from .forms import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -137,3 +137,12 @@ def adminPage(request: HttpRequest) -> HttpResponse:
 
     context = {'form': form}
     return render(request, 'admin.html', context)
+
+def upvote_message(request, pk):
+    message = get_object_or_404(Message, id=request.POST.get('message_id'))
+
+    if message.upvote.filter(request.user.id).exists():
+        message.upvote.remove(request.user)
+    else:
+        message.upvote.add(request.user)
+    return redirect('bugBoard', args=(str(pk)))
