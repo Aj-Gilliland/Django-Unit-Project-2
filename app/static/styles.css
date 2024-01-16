@@ -197,6 +197,10 @@ body {
   max-width: 200px !important;
 }
 
+.maxContent{
+  max-width: max-content !important;
+}
+
 .minContent{
   max-width: min-content !important;
 }
