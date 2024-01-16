@@ -122,8 +122,8 @@
 }
 
 .bluebar{
-  background-color:#6caec4bb;
-  color:var(--brown) !important;
+  background-color: #725a4387;
+  color:var(--blue) !important;
   text-align: center;
   border-radius: 20px;
 }
