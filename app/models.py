@@ -92,6 +92,9 @@ def makeMessage(content,account,report):
     report.messages.add(message)
     report.save() 
 
+def getMessageById(message_id):
+    message = Message.objects.get(id=message_id)
+    return(message)
 
 ####upvote####
 
@@ -123,14 +126,9 @@ def makeReport(user,prompt,title):
     report = BugReport(title=title, prompt=prompt, account=account)
     report.save()
 
-# # report_commented_on,account_sending_message <<<this goes in params post testing
-# def addMessage():
-#     report_commented_on = BugReport.objects.get(prompt = "Iv got loads of problems, omg so so many problems. One of them is in fact that I'm running out of words to use here to fill the space. Its not a joke I just want to make sure that the software can handle it.")
-#     account_sending_message = Account.objects.get(id = 2)
-#     new_message = Message(content='This is a message, its pretty cool. You can read it and stuff.',account=account_sending_message)
-#     new_message.save()
-#     report_commented_on.messages.add(new_message)
-#     report_commented_on.save()
+def makeBest(report,message):
+    report.most_correct = message
+    report.save()
 
 
 ####admin####

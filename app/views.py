@@ -43,10 +43,18 @@ def bugBoardPage(request: HttpRequest) -> HttpResponse:
                 makeMessage(message, account, report)
             else:
                 print(message_form.errors)
+        #checks if a user is trying to escalate a message
+        elif 'message_id' in request.POST:
+            escalateMessageForm1 = escalateMessageForm(request.POST)
+            if escalateMessageForm1.is_valid():
+                message_id = escalateMessageForm1.cleaned_data['message_id']
+                report_id = escalateMessageForm1.cleaned_data['report_id']  
+                report = getReportById(report_id)
+                message = getMessageById(message_id)
+                makeBest(report,message)
     reportList = getAllReports()
     context = {'CurrentUserData':{'account':getAccountFor(request.user),'user':request.user},'bugReports': reportList, 'report_form': report_form, 'message_form': message_form}
     return render(request, "bugBoard.html", context)
-
 
 @login_required(login_url='login')
 def profilePage(request:HttpRequest)->HttpResponse:
@@ -84,7 +92,7 @@ def loginPage(request:HttpRequest)->HttpResponse:
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                #vvvvvvv   this associates a user with an account if they are not already 
+                #vvvvvvv   this associates a user with an account if they are not already !!!!!!!!!!!!!!!
                 if hasAccount(user):
                     return redirect('home')
                 else:
@@ -149,7 +157,6 @@ def adminPage(request: HttpRequest) -> HttpResponse:
             return render(request, 'admin.html', context)
     else:
         form = adminDeleteForm()
-
     context = {'form': form}
     return render(request, 'admin.html', context)
 

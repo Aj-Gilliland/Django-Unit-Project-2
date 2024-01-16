@@ -23,3 +23,6 @@ class messageForm(forms.Form):
     message = forms.CharField(max_length=254, required=True)
     report_id = forms.CharField(max_length=254, widget=forms.HiddenInput())
 
+class escalateMessageForm(forms.Form):
+    message_id = forms.CharField(max_length=254, widget=forms.HiddenInput())
+    report_id = forms.CharField(max_length=254, widget=forms.HiddenInput())

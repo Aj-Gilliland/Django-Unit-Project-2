@@ -50,8 +50,7 @@
             <br>
 
             {% for i in bugReports %}
-            {% if i.most_correct %}
-                
+            {% if i.most_correct %}     
                 <div class="card border-blue boarderMed blue-box-shadow">
                     <div class="card-title">
                         <h1 class="mx-auto card-title row d-flex justify-content-center mt-3">
@@ -67,7 +66,6 @@
                         <span class="minContent badge text-bg-primary rounded-pill"><strong>Solution:</strong> {{ i.most_correct }}</span>
                     </div>
                 </div>
-            
                 {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -79,8 +77,7 @@
                                     <input type="hidden" name="report_id" value="{{ i.id }}">
                                 </div>
                                 <button type="submit" class="btn btn-primary" name='comment'>Submit Comment</button>
-                            </form>
-                            
+                            </form>          
                         </div>
                     </div>
                 </div>
@@ -90,7 +87,6 @@
             {% else %}
             {% comment %} this detects if its your bug report so only you can edit it {% endcomment %}
             {% if i.account == CurrentUserData.account %}
-
                 <div class="card border-blue boarderMed blue-box-shadow">
                     <div class="card-title">
                         <h1 class="mx-auto card-title row d-flex justify-content-center mt-3">
@@ -103,26 +99,45 @@
                     </div>
                     <div class='card-body'>
                         <p class="card-text h6">{{ i.prompt }}</p>
-                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
-            
+                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>        
                         {% comment %} Comment button triggering the form {% endcomment %}
-                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
-            
+                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>   
                         {% comment %} Collapsible content {% endcomment %}
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
-                            <div class="">
+                            <div>
                                 {% for msg in i.messages.all %}
                                     <div class='upVoteDiv'>
                                         <p>{{ msg.content }}</p>
                                         <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
-                                        <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-check' onclick="toggleIcon(this)"></button>
-                                    </div>                                   
+                                        <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-check' onclick="autoPopulateAndSubmitForm()"></button>
+                                    </div> 
+                                    <form id="escalateMessageForm" method="POST" action="{% url 'bugBoard' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" id="id_message_id" name="message_id" value="">
+                                        <input type="hidden" id="id_report_id" name="report_id" value="">
+                                        <button type="submit" class="btn btn-primary" name="escalateMessage" style='display:None;'></button>
+                                    </form>                                    
+                                    <script>
+                                        {% comment %} DO NOT PUT THIS IN THE JS FILE {% endcomment %}
+                                        {% comment %} auto-populate hidden form fields and submit the form {% endcomment %}
+                                        function autoPopulateAndSubmitForm() {
+                                            console.log('elevating msg in report');
+                                            var currentReport = {{ i.id }};
+                                            var currentMessage = {{ msg.id }};               
+                                            var messageField = document.getElementById('id_message_id');  
+                                            var reportField = document.getElementById('id_report_id');    
+                                            var escalateForm = document.getElementById('escalateMessageForm');                                        
+                                            messageField.value = currentMessage;
+                                            reportField.value = currentReport;
+                                            escalateForm.action = '{% url "bugBoard" %}';
+                                            escalateForm.method = 'post';               
+                                            escalateForm.submit();}                                      
+                                    </script>                                   
                                 {% endfor %}  
                             </div>
                         </div>
                     </div>
                 </div>
-            
                 {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -155,14 +170,12 @@
                     </div>
                     <div class='card-body'>
                         <p class="card-text h6">{{ i.prompt }}</p>
-                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>
-            
+                        <button class="btn btn-link linkStripper" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages{{ forloop.counter }}">View responses </button>        
                         {% comment %} Comment button triggering the form {% endcomment %}
                         <button class="btn btn-link linkStripper" type="button" data-bs-toggle="modal" data-bs-target="#commentModal{{ forloop.counter }}">Comment </button>
-            
                         {% comment %} Collapsible content {% endcomment %}
                         <div class="collapse" id="collapseMessages{{ forloop.counter }}">
-                            <div class="">
+                            <div >
                                 {% for msg in i.messages.all %}
                                     <div class='upVoteDiv'>
                                         <p>{{ msg.content }}</p>
@@ -172,8 +185,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            
+                </div>           
                 {% comment %} Commenting workflow  {% endcomment %}
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -195,7 +207,6 @@
             {% endif %}
             {% endif %}
             {% endfor %}
-
             {% comment %} continue side bar {% endcomment %}
             </main>
         </div>
