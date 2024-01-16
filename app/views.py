@@ -117,7 +117,6 @@ def settingPage(request: HttpRequest) -> HttpResponse:
         if 'password_change_submit' in request.POST:
             password_change_form = PasswordChangeForm(request.user, request.POST)
             if password_change_form.is_valid():
-                print('ready to change')
                 user = password_change_form.save()
                 update_session_auth_hash(request, user)
                 return redirect('setting')
@@ -146,7 +145,6 @@ def settingPage(request: HttpRequest) -> HttpResponse:
 
 @staff_member_required
 def adminPage(request: HttpRequest) -> HttpResponse:
-    print(f'Current User id: {request.user.id}')
     if request.method == 'POST':
         form = adminDeleteForm(request.POST)  
         if form.is_valid():

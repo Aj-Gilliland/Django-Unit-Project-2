@@ -22,12 +22,18 @@
                         {% for error in errors %}
                             <p class="error errorShadow d-flex middleOfScreen center maxWidthBox" role="alert">{{ error|striptags }}</p>
                         {% endfor %}
-                    
-                        {% for field in form %}
-                            <div class="mb-3 input-group">
-                                <input type="{{ field.widget.input_type }}" name="{{ field.name }}" placeholder="{{ field.label }}" class="form-control">
-                            </div>
-                        {% endfor %}
+                        <div class="mb-3 input-group">
+                            <input type="text" name="username" placeholder="Username" class="form-control">
+                        </div>
+                        <div class="mb-3 input-group">
+                            <input type="email" name="email" placeholder="Email address" class="form-control">
+                        </div>
+                        <div class="mb-3 input-group">
+                            <input type="password" name="password1" placeholder="Password" class="form-control">
+                        </div>
+                        <div class="mb-3 input-group">
+                            <input type="password" name="password2" placeholder="Password confirmation" class="form-control">
+                        </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <input class="btn login_btn" type="submit" value="Signup">
                         </div>
