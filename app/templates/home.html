@@ -2,7 +2,7 @@
 <!DOCTYPE html>
     <html lang="en">
     <meta charset="UTF-8">
-    <title>Code Connect Hub</title>
+    <title>Code Connect</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='{% static 'styles.css' %}'>
     <link rel="shortcut icon" type="image/png" href="{% static 'icons/favicon.ico' %}">
@@ -14,18 +14,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <body class=' d-flex flex-column min-vh-100 homeBackground'>
-
         {% comment %} header {% endcomment %}
         <div class='width100'> 
             <nav class="navbar navbar-expand-lg navbar-light background-blue">
                 <a class="navbar-brand ms-3" href="{% url 'home' %}">
                     <img src="{% static 'images/dark_base_camp_logo.png' %}" alt="Logo" class="img-fluid" style="max-height: 50px;">
                 </a>
-        
                 <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-        
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">       
                         {% if request.user.is_authenticated %}
@@ -60,14 +57,12 @@
         </div>
         {% comment %} end header {% endcomment %}
 
-
         <div class="container bluebar minContent d-flex justify-content-center mt-2">
             <h1 class="opaqe h1 d-flex text-nowrap p-2">Welcome To Code Connect</h1>
         </div>
         <div class="missonstatement">
             <a>Welcome to Code Connect. CC is a hub for basecamp students to assist each other in various coding challenges. Various incentives are given for helping out ,so sign up and get to connecting!</a>
         </div>
-
 
         {% comment %} Footer {% endcomment %}
         <footer class="footer mt-auto py-3 background-blue">
