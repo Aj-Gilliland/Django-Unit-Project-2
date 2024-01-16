@@ -12,7 +12,7 @@ class Account(models.Model):
         
 class Message(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
-    content = models.CharField(max_length=255, unique=True)
+    content = models.CharField(max_length=255)
     def __str__(self):
         return self.content
     
@@ -86,8 +86,8 @@ def getNotificationsFor(user):
 
 ####messages####
 
-def makeMessage(content,account,report):
-    message = Message(content=content,account=account)
+def makeMessage(message,account,report):
+    message = Message(content=message,account=account)
     message.save()
     report.messages.add(message)
     report.save() 

@@ -89,6 +89,10 @@
   font-size: x-large;
 }
 
+.blue-hr{
+  border-color: var(--blue);
+}
+
 .med-font{
   font-size: medium !important;
 }
@@ -134,6 +138,11 @@
 /* end miscellaneous */
 
 /* all */
+
+html {
+  scroll-behavior: smooth !important;
+}
+
 body,html{
   overflow-y: scroll !important;
   overflow-x: hidden !important;

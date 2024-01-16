@@ -96,7 +96,6 @@
         });
     </script>
     
-    
     <br>
 
     <div class="col-md-12 container w-75">
@@ -106,7 +105,9 @@
             </div>
             <ul class="list-group list-group-flush overflow">
                 {% for bugReport in userBugReports %}
-                    <li class="list-group-item border-0">{{ bugReport }}</li>
+                    <li class="list-group-item border-0 text-brown"><h4>{{ bugReport.title }}</h4></li>
+                    <li class="list-group-item border-0 text-brown">{{ bugReport.prompt }}</li>
+                    <hr class='text-center blue-hr'>
                 {% endfor %}
             </ul>
         </div>

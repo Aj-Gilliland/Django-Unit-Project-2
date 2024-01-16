@@ -27,7 +27,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{% url 'bugBoard' %}">
+                            <form method="POST" action="">
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     <label for="reportTitle" class="form-label">Title</label>
@@ -70,7 +70,7 @@
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
-                            <form class='bg-transparent' method="post" action="{% url 'bugBoard' %}">
+                            <form class='bg-transparent' method="post" action="">
                                 {% csrf_token %}
                                 <div class="mb-3 bg-transparent">
                                     <textarea class="form-control" id="message" rows="4"></textarea>
@@ -109,9 +109,11 @@
                                     <div class='upVoteDiv'>
                                         <p>{{ msg.content }}</p>
                                         <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-arrow-up-circle' onclick="toggleIcon(this)"></button>
-                                        <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-check' onclick="autoPopulateAndSubmitForm()"></button>
+                                        {% if CurrentUserData.account != msg.account %}
+                                            <button class='btn btn-sm bg-transparent border-0 upVoteIcon bi bi-check' onclick="autoPopulateAndSubmitForm()"></button>
+                                        {% endif %}
                                     </div> 
-                                    <form id="escalateMessageForm" method="POST" action="{% url 'bugBoard' %}">
+                                    <form id="escalateMessageForm" method="POST" action="">
                                         {% csrf_token %}
                                         <input type="hidden" id="id_message_id" name="message_id" value="">
                                         <input type="hidden" id="id_report_id" name="report_id" value="">
@@ -142,7 +144,7 @@
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
-                            <form class='bg-transparent' method="post" action="{% url 'bugBoard' %}">
+                            <form class='bg-transparent' method="post" action="">
                                 {% csrf_token %}
                                 <div class="mb-3 bg-transparent">
                                     <textarea class="form-control" id="message" name='message' rows="4"></textarea>
@@ -190,7 +192,7 @@
                 <div class="modal fade" id="commentModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content bg-transparent border-0">
-                            <form class='bg-transparent' method="post" action="{% url 'bugBoard' %}">
+                            <form class='bg-transparent' method="post" action="">
                                 {% csrf_token %}
                                 <div class="mb-3 bg-transparent">
                                     <textarea class="form-control" id="message" name='message' rows="4"></textarea>
