@@ -19,7 +19,7 @@ def homePage(request:HttpRequest)->HttpResponse:
         context = {}
         return render(request, "home.html", context)
 
-
+@login_required(login_url='login')
 def bugBoardPage(request: HttpRequest) -> HttpResponse:
     report_form = reportForm()
     message_form = messageForm()

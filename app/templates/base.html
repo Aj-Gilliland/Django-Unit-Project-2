@@ -31,28 +31,28 @@
                     <ul class="navbar-nav">       
                         {% if request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'bugBoard' %}">Bug Board</a>
+                                <a class="text-brown nav-link" href="{% url 'bugBoard' %}">Bug Board</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                                <a class="text-brown nav-link" href="{% url 'profile' %}">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'setting' %}">Settings</a>
+                                <a class="text-brown nav-link" href="{% url 'setting' %}">Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                <a class="text-brown nav-link" href="{% url 'logout' %}">Logout</a>
                             </li>
                             {% if request.user.is_superuser %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'dashboard' %}">Admin Panel</a>
+                                    <a class="text-brown nav-link" href="{% url 'dashboard' %}">Admin Panel</a>
                                 </li>
                             {% endif %}
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                                <a class="text-brown nav-link" href="{% url 'home' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="text-brown nav-link" href="{% url 'login' %}">Login</a>
                             </li>
                         {% endif %}
                     </ul>
